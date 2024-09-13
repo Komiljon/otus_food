@@ -58,9 +58,22 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+    - family: RobotoBlackItalic
+      fonts:
+        - asset: assets/fonts/Roboto-BlackItalic.ttf
+          style: italic
+    - family: AkaIcons
+      fonts:
+        - asset: assets/fonts/AkaIcons.ttf
+
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

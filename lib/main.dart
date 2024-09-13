@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:otusfood/widgets/foodListCards.dart';
+import 'widgets/foodListCards.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,32 +13,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Otus Food',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
         useMaterial3: true,
+        fontFamily: 'Roboto'
       ),
-      home: const MyHomePage(title: 'Otus Food'),
+      home: const FoodList(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class FoodList extends StatelessWidget {  
+  const FoodList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        backgroundColor: const Color.fromRGBO(236, 236, 236, 1),
+        title: const Text('Otus Food'),
       ),
       body: Center(
         child: ListView(
@@ -49,47 +43,57 @@ class _MyHomePageState extends State<MyHomePage> {
               cardUrl: '',
               horTitleGap: 16.0,
               cardImage: 'assets/images/f1.png',
+              time: '45 минут',
             ),
+            SizedBox(height: 16,),
             FoodCards(
               cardText: 'Поке боул с сыром тофу',
               cardUrl: '',
               horTitleGap: 16.0,
               cardImage: 'assets/images/f2.png',
+              time: '30 минут',
             ),
+            SizedBox(height: 16,),
             FoodCards(
               cardText: 'Стейк из говядины по-грузински с кукурузой',
               cardUrl: '',
               horTitleGap: 16.0,
               cardImage: 'assets/images/f3.png',
+              time: '1 час 45 минут',
             ),
-
+            SizedBox(height: 16,),
             FoodCards(
               cardText: 'Тосты с голубикой и бананом',
               cardUrl: '',
               horTitleGap: 16.0,
               cardImage: 'assets/images/f4.png',
+              time: '45 минут',
             ),
-
+            SizedBox(height: 16,),
             FoodCards(
               cardText: 'Паста с морепродуктами',
               cardUrl: '',
               horTitleGap: 16.0,
               cardImage: 'assets/images/f5.png',
+              time: '25 минут',
             ),
-
+            SizedBox(height: 16,),
             FoodCards(
               cardText: 'Бургер с двумя котлетами',
               cardUrl: '',
               horTitleGap: 16.0,
               cardImage: 'assets/images/f6.png',
+              time: '1 час',
             ),
-
+            SizedBox(height: 16,),
             FoodCards(
               cardText: 'Пицца Маргарита домашняя',
               cardUrl: '',
               horTitleGap: 16.0,
               cardImage: 'assets/images/f7.png',
+              time: '25 минут',
             ),
+            SizedBox(height: 32,),
           ],
         ),
       ),
