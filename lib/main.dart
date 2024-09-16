@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Otus Food',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey), useMaterial3: true, fontFamily: 'Roboto'),
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(236, 236, 236, 1)), useMaterial3: true, fontFamily: 'Roboto'),
       home: FoodList(),
     );
   }
