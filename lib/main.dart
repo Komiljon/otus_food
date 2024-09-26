@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Otus Food',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(236, 236, 236, 1)), useMaterial3: true, fontFamily: 'Roboto'),
+      theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(236, 236, 236, 1)),
+          useMaterial3: true,
+          fontFamily: 'Roboto'),
       home: FoodList(),
     );
   }
@@ -68,6 +71,8 @@ class FoodList extends StatelessWidget {
     },
   ];
 
+  final bool showList = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,18 +82,22 @@ class FoodList extends StatelessWidget {
       body: Center(
           child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: ListView.separated(
-          separatorBuilder: (context, index) => const SizedBox(
-            height: 16,
-          ),
-          itemBuilder: (context, index) => FoodCards(
-            cardText: foodListData[index]['cardText'],
-            cardUrl: foodListData[index]['cardUrl'],
-            cardImage: foodListData[index]['cardImage'],
-            time: foodListData[index]['time'],
-          ),
-          itemCount: foodListData.length,
-        ),
+        child: (showList)
+            ? ListView.separated(
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 16,
+                ),
+                itemBuilder: (context, index) => FoodCards(
+                  cardText: foodListData[index]['cardText'],
+                  cardUrl: foodListData[index]['cardUrl'],
+                  cardImage: foodListData[index]['cardImage'],
+                  time: foodListData[index]['time'],
+                ),
+                itemCount: foodListData.length,
+              )
+            : const Center(
+                child: Text("No data..."),
+              ),
       )),
     );
   }
