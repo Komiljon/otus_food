@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/food_detail.dart';
 import 'pages/food_list.dart';
 import 'pages/start.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/start': (context) => const StartPage(),
           '/': (context) => const FoodListScreen(),
+          '/food': (context) => const FoodDetail(),
         });
   }
 }

@@ -54,6 +54,15 @@ class _FoodListScreenState extends State<FoodListScreen> {
           },
         ),
       )),
+      floatingActionButton: FloatingActionButton(
+        shape: const CircleBorder(),
+        backgroundColor: Colors.green,
+        elevation: 0,
+        onPressed: () {
+          setState(() {});
+        },
+        child: const Icon(Icons.add),
+      ),
       bottomNavigationBar: const AkaBottomNavigationBar(curIndexs: 0, selected: true),
     );
   }
