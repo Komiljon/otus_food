@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/start',
         routes: {
           '/start': (context) => const StartPage(),
-          '/': (context) => const FoodList(),
+          '/': (context) => const FoodListScreen(),
         });
   }
 }

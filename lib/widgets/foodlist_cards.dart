@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class FoodCards extends StatelessWidget {
-  final String cardText;
-  final String cardUrl;
+class FoodCard extends StatelessWidget {
+  final int id;
+  final String cardText;  
   final String cardImage;
   final String time;
 
-  const FoodCards({super.key, required this.cardText, required this.cardUrl, required this.cardImage, required this.time});
+  const FoodCard({super.key, required this.id, required this.cardText, required this.cardImage, required this.time});
 
   @override
   Widget build(BuildContext context) {

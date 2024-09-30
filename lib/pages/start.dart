@@ -21,7 +21,7 @@ class _StartPageState extends State<StartPage> {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-            builder: (context) => const FoodList(),
+            builder: (context) => const FoodListScreen(),
           ),
           (route) => false);
     });

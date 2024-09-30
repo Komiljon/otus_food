@@ -4,14 +4,14 @@ import '../model/food_list.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/foodlist_cards.dart';
 
-class FoodList extends StatefulWidget {
-  const FoodList({super.key});
+class FoodListScreen extends StatefulWidget {
+  const FoodListScreen({super.key});
 
   @override
-  State<FoodList> createState() => _FoodListState();
+  State<FoodListScreen> createState() => _FoodListScreenState();
 }
 
-class _FoodListState extends State<FoodList> {
+class _FoodListScreenState extends State<FoodListScreen> {
   final bool showList = true;
 
   late Future<FoodsList> foodsLists;
@@ -39,9 +39,9 @@ class _FoodListState extends State<FoodList> {
                 separatorBuilder: (context, index) => const SizedBox(
                   height: 16,
                 ),
-                itemBuilder: (context, index) => FoodCards(
-                  cardText: snapshot.data?.foods[index].name ?? 'нет названиия',
-                  cardUrl: '',
+                itemBuilder: (context, index) => FoodCard(
+                  id: snapshot.data?.foods[index].id ?? 0,
+                  cardText: snapshot.data?.foods[index].name ?? 'нет названиия',                  
                   cardImage: snapshot.data?.foods[index].photo ?? '',
                   time: snapshot.data?.foods[index].duration ?? '',
                 ),
