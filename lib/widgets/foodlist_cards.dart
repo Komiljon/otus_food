@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../pages/food_detail.dart';
+
 class FoodCard extends StatelessWidget {
   final int id;
   final String cardText;  
@@ -12,7 +14,12 @@ class FoodCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap:() {
-       Navigator.pushNamedAndRemoveUntil(context, '/food', (route) => true);
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (context) => FoodDetail(id: id)
+          ),
+          (route) => true);
       },
       child: Card(
         shadowColor: Colors.white,
@@ -75,7 +82,7 @@ class FoodCard extends StatelessWidget {
                                   fontSize: 16.0,
                                   fontFamily: 'Roboto',
                                   fontWeight: FontWeight.w400,
-                                  color: Colors.green,
+                                  color: Color.fromRGBO(46, 204, 113, 1),
                                   height: 1,
                                 ),
                                 maxLines: 1,

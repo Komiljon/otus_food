@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'food_list.dart';
-
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
 
@@ -18,12 +16,7 @@ class _StartPageState extends State<StartPage> {
 
     Timer(const Duration(milliseconds: 2000), () {
       Navigator.pop(context);
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const FoodListScreen(),
-          ),
-          (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
     });
   }
 

@@ -17,14 +17,14 @@ class MyApp extends StatelessWidget {
         title: 'Otus Food',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(236, 236, 236, 1)),
+            colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromRGBO(46, 204, 113, 1)),
             useMaterial3: true,
             fontFamily: 'Roboto'),
         initialRoute: '/start',
         routes: {
           '/start': (context) => const StartPage(),
           '/': (context) => const FoodListScreen(),
-          '/food': (context) => const FoodDetail(),
+          '/food': (context) => const FoodDetail(id: 0),
         });
   }
 }
