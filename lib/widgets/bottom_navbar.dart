@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class AkaBottomNavigationBar extends StatefulWidget {
@@ -10,9 +12,6 @@ class AkaBottomNavigationBar extends StatefulWidget {
 }
 
 class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
-  int currentIndex = 0;
-  bool selected = true;
-
   @override
   void initState() {
     super.initState();
@@ -24,7 +23,13 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
         Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
         break;
       case 1:
+        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => true);
+        break;
+      case 2:
         Navigator.pushNamedAndRemoveUntil(context, '/start', (route) => true);
+        break;
+      case 3:
+        Navigator.pushNamedAndRemoveUntil(context, '/auth', (route) => true);
         break;
       default:
         Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -37,20 +42,22 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        selectedItemColor: selected ? Colors.green : Colors.black,
-        unselectedItemColor: Colors.black,
+        selectedItemColor: widget.selected ? Colors.green : const Color.fromRGBO(194, 194, 194, 1),
+        unselectedItemColor: const Color.fromRGBO(194, 194, 194, 1),
         selectedFontSize: 11.0,
         unselectedFontSize: 11.0,
-        currentIndex: currentIndex,
+        currentIndex: widget.curIndexs,
         onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
             icon: Container(
               padding: const EdgeInsets.only(bottom: 4.0),
-              child: const Image(
-                image: AssetImage('assets/icons/recepts.png'),
-                width: 24,
-                height: 24,
+              child: Transform.rotate(
+                angle: 45 * pi / 180,
+                child: const Icon(
+                  Icons.local_pizza,
+                  size: 24,
+                ),
               ),
             ),
             label: 'Рецепты',
@@ -58,10 +65,29 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
           BottomNavigationBarItem(
             icon: Container(
               padding: const EdgeInsets.only(bottom: 4.0),
-              child: const Image(
-                image: AssetImage('assets/icons/profil.png'),
-                width: 24,
-                height: 24,
+              child: const Icon(
+                Icons.kitchen,
+                size: 24,
+              ),
+            ),
+            label: 'Холодильниик',
+          ),
+          BottomNavigationBarItem(
+            icon: Container(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: const Icon(
+                Icons.favorite,
+                size: 24,
+              ),
+            ),
+            label: 'Избранное',
+          ),
+          BottomNavigationBarItem(
+            icon: Container(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: const Icon(
+                Icons.person,
+                size: 24,
               ),
             ),
             label: 'Вход',
