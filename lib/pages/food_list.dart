@@ -41,7 +41,7 @@ class _FoodListScreenState extends State<FoodListScreen> {
                 ),
                 itemBuilder: (context, index) => FoodCard(
                   id: snapshot.data?.foods[index].id ?? 0,
-                  cardText: snapshot.data?.foods[index].name ?? 'нет названиия',                  
+                  cardText: snapshot.data?.foods[index].name ?? 'нет названиия',
                   cardImage: snapshot.data?.foods[index].photo ?? '',
                   time: snapshot.data?.foods[index].duration ?? '',
                 ),
@@ -59,11 +59,48 @@ class _FoodListScreenState extends State<FoodListScreen> {
         backgroundColor: Colors.green,
         elevation: 0,
         onPressed: () {
-          setState(() {});
+          _dialogBuilder(context);
         },
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: const AkaBottomNavigationBar(curIndexs: 0, selected: true),
     );
   }
+}
+
+Future<void> _dialogBuilder(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Basic dialog title'),
+        content: const Text(
+          'A dialog is a type of modal window that\n'
+          'appears in front of app content to\n'
+          'provide critical information, or prompt\n'
+          'for a decision to be made.',
+        ),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Disable'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: const Text('Enable'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

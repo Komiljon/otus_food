@@ -38,27 +38,34 @@ class _LoginRegisterState extends State<LoginRegister> {
         top: true,
         child: SingleChildScrollView(
           child: SizedBox(
-            height: (MediaQuery.of(context).size.height>600)?MediaQuery.of(context).size.height - 100:600,
+            height: (MediaQuery.of(context).size.height > 600) ? MediaQuery.of(context).size.height - 150 : 600,
             child: Center(
                 child: SizedBox(
               width: 232,
               child: Padding(
-              padding: const EdgeInsets.only(top:50, bottom: 20),
+                padding: const EdgeInsets.only(top: 50, bottom: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
-                  children: [ 
-                  const SizedBox(height: 10,),               
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                     mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        const Text('Otus.Food', style: TextStyle(fontSize: 30, color: Colors.white) ,),
-                        const SizedBox(height: 60,),
+                        const Text(
+                          'Otus.Food',
+                          style: TextStyle(fontSize: 30, color: Colors.white),
+                        ),
+                        const SizedBox(
+                          height: 60,
+                        ),
                         SizedBox(
-                        height:270,
+                          height: 270,
                           child: Form(
                             key: _formKey,
                             child: Column(
@@ -82,25 +89,25 @@ class _LoginRegisterState extends State<LoginRegister> {
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10.0),
                                       borderSide: const BorderSide(
-                                          width: 0, 
-                                          style: BorderStyle.none,
-                                      ),                          
+                                        width: 0,
+                                        style: BorderStyle.none,
+                                      ),
                                     ),
                                     disabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10.0),
                                       borderSide: const BorderSide(
-                                          width: 0, 
-                                          style: BorderStyle.none,
-                                      ),                          
+                                        width: 0,
+                                        style: BorderStyle.none,
+                                      ),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10.0),
                                       borderSide: const BorderSide(
-                                          width: 0, 
-                                          style: BorderStyle.none,
-                                      ),                          
-                                    ),                                    
-                                  ),  
+                                        width: 0,
+                                        style: BorderStyle.none,
+                                      ),
+                                    ),
+                                  ),
                                   controller: textController1,
                                   onFieldSubmitted: (item) {},
                                 ),
@@ -126,72 +133,74 @@ class _LoginRegisterState extends State<LoginRegister> {
                                     enabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10.0),
                                       borderSide: const BorderSide(
-                                          width: 0, 
-                                          style: BorderStyle.none,
-                                      ),                          
-                                    ),
-                                    disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      borderSide: const BorderSide(
-                                          width: 0, 
-                                          style: BorderStyle.none,
-                                      ),                          
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      borderSide: const BorderSide(
-                                          width: 0, 
-                                          style: BorderStyle.none,
-                                      ),                          
-                                    ),
-                                  ),
-                                  controller: textController2,
-                                  onFieldSubmitted: (item) {},
-                                ),
-                                if(isRegister) const SizedBox(
-                                  height: 16,
-                                ),
-                                if(isRegister) TextFormField(
-                                  key: _inputKey3,
-                                  decoration: InputDecoration(
-                                    hintText: '',
-                                    labelText: 'пароль еще раз',
-                                    labelStyle: const TextStyle(color: Color.fromRGBO(194, 194, 194, 1)),
-                                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                                    prefixIcon: const Icon(
-                                      Icons.https,
-                                      color: Color.fromRGBO(194, 194, 194, 1),
-                                      size: 24,
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    contentPadding: const EdgeInsets.only(bottom: 5),
-                                    isDense: true,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      borderSide: const BorderSide(
-                                          width: 0, 
-                                          style: BorderStyle.none,
+                                        width: 0,
+                                        style: BorderStyle.none,
                                       ),
                                     ),
                                     disabledBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10.0),
                                       borderSide: const BorderSide(
-                                          width: 0, 
-                                          style: BorderStyle.none,
-                                      ),                          
+                                        width: 0,
+                                        style: BorderStyle.none,
+                                      ),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10.0),
                                       borderSide: const BorderSide(
-                                          width: 0, 
-                                          style: BorderStyle.none,
-                                      ),                          
+                                        width: 0,
+                                        style: BorderStyle.none,
+                                      ),
                                     ),
                                   ),
-                                  controller: textController3,
+                                  controller: textController2,
                                   onFieldSubmitted: (item) {},
                                 ),
+                                if (isRegister)
+                                  const SizedBox(
+                                    height: 16,
+                                  ),
+                                if (isRegister)
+                                  TextFormField(
+                                    key: _inputKey3,
+                                    decoration: InputDecoration(
+                                      hintText: '',
+                                      labelText: 'пароль еще раз',
+                                      labelStyle: const TextStyle(color: Color.fromRGBO(194, 194, 194, 1)),
+                                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                                      prefixIcon: const Icon(
+                                        Icons.https,
+                                        color: Color.fromRGBO(194, 194, 194, 1),
+                                        size: 24,
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      contentPadding: const EdgeInsets.only(bottom: 5),
+                                      isDense: true,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10.0),
+                                        borderSide: const BorderSide(
+                                          width: 0,
+                                          style: BorderStyle.none,
+                                        ),
+                                      ),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10.0),
+                                        borderSide: const BorderSide(
+                                          width: 0,
+                                          style: BorderStyle.none,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10.0),
+                                        borderSide: const BorderSide(
+                                          width: 0,
+                                          style: BorderStyle.none,
+                                        ),
+                                      ),
+                                    ),
+                                    controller: textController3,
+                                    onFieldSubmitted: (item) {},
+                                  ),
                                 const SizedBox(
                                   height: 32,
                                 ),
@@ -204,7 +213,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                                     ),
                                     onPressed: () {},
                                     child: Text(
-                                      (isRegister)?'Регистрация':'Войти',
+                                      (isRegister) ? 'Регистрация' : 'Войти',
                                       style: const TextStyle(color: Colors.white, fontSize: 16),
                                     ),
                                   ),
@@ -215,16 +224,15 @@ class _LoginRegisterState extends State<LoginRegister> {
                         ),
                       ],
                     ),
-                    
                     SelectableText(
-                    (isRegister)?'Войти в приложение':'Зарегистрироваться', style: const TextStyle(fontSize: 14, color: Colors.white),
-                    onTap: (){
-                      setState(() {
-                        isRegister = !isRegister;
-                      });
-                    },
+                      (isRegister) ? 'Войти в приложение' : 'Зарегистрироваться',
+                      style: const TextStyle(fontSize: 14, color: Colors.white),
+                      onTap: () {
+                        setState(() {
+                          isRegister = !isRegister;
+                        });
+                      },
                     ),
-                             
                   ],
                 ),
               ),
