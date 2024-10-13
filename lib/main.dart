@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/add_new_recept.dart';
 import 'pages/auth.dart';
 import 'pages/food_detail.dart';
 import 'pages/food_list.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => const FoodListScreen(),
           '/food': (context) => const FoodDetail(id: 0),
           '/auth': (context) => const LoginRegister(),
+          '/addnewrecept': (context) => const AddNewRecept(),
         });
   }
 }
