@@ -119,6 +119,23 @@ class _FoodDetailState extends State<FoodDetail> {
                                       IngredietRow(name: 'Вода', wedghts: '8 ст. ложек',),
                                       SizedBox(height: 5,),
                                       IngredietRow(name: 'Мёд', wedghts: '3 ст. ложки',),
+
+                                      SizedBox(height: 5,),
+                                      IngredietRow(name: 'Коричневый сахар', wedghts: '2 ст. ложки',),
+                                      SizedBox(height: 5,),
+                                      IngredietRow(name: 'Чеснок', wedghts: '3 зубчика',),
+                                      SizedBox(height: 5,),
+                                      IngredietRow(name: 'Тёртый свежий имбирь', wedghts: '1 ст. ложка',),
+                                      SizedBox(height: 5,),
+                                      IngredietRow(name: 'Лимонный сок', wedghts: '1¹⁄₂ ст. ложки',),
+                                      SizedBox(height: 5,),
+                                      IngredietRow(name: 'Кукурузный крахмал', wedghts: '1 ст. ложка',),
+                                      SizedBox(height: 5,),
+                                      IngredietRow(name: 'Растительное масло', wedghts: '1 ч. ложка',),
+                                      SizedBox(height: 5,),
+                                      IngredietRow(name: 'Филе лосося или сёмги', wedghts: '680 г',),
+                                      SizedBox(height: 5,),
+                                      IngredietRow(name: 'Кунжут', wedghts: 'по вкусу',),
                                     ],
                                   ),
                                 ),
@@ -137,6 +154,18 @@ class _FoodDetailState extends State<FoodDetail> {
         
                               const SizedBox(height: 16,),
                               const IngredietSteps(nomer: '3', ingText: 'Смешайте оставшуюся воду с крахмалом. Добавьте в кастрюлю и перемешайте.', ingTime: '06:00',),
+
+                              const SizedBox(height: 16,),
+                              const IngredietSteps(nomer: '4', ingText: 'Готовьте, непрерывно помешивая венчиком, 1 минуту. Снимите с огня и немного остудите.', ingTime: '01:00',),
+
+                              const SizedBox(height: 16,),
+                              const IngredietSteps(nomer: '5', ingText: 'Смажьте форму маслом и выложите туда рыбу. Полейте её соусом.', ingTime: '06:00',),
+
+                              const SizedBox(height: 16,),
+                              const IngredietSteps(nomer: '5', ingText: 'Поставьте в разогретую до 200 °C духовку примерно на 15 минут.', ingTime: '15:00',),
+
+                              const SizedBox(height: 16,),
+                              const IngredietSteps(nomer: '7', ingText: 'Перед подачей полейте соусом из формы и посыпьте кунжутом.', ingTime: '06:00',),
 
                               const SizedBox(height: 16,),
 

@@ -229,45 +229,47 @@ Future<void> _dialogIngredientBuilder(BuildContext context) {
                         textControllerIngrName.text = value ?? '';
                       },
                     ),
+
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: '',
+                        labelText: 'Количество',
+                        filled: true,
+                        fillColor: Color.fromRGBO(236, 236, 236, 1),
+                        contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                        isDense: true,
+                      ),
+                      controller: textControllerIngrCount,
+                      onSaved: (value) {
+                        textControllerIngrCount.text = value ?? '';
+                      },
+                    ),
+                    const SizedBox(height: 60),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0.0),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                            minimumSize: const Size(232, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+                            backgroundColor: const Color.fromRGBO(46, 204, 113, 1)),
+                        child: const Text(
+                          'Добавить',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
+                        ),
+                      ),
+                    ),
+
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: '',
-                  labelText: 'Количество',
-                  filled: true,
-                  fillColor: Color.fromRGBO(236, 236, 236, 1),
-                  contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-                  isDense: true,
-                ),
-                controller: textControllerIngrCount,
-                onSaved: (value) {
-                  textControllerIngrCount.text = value ?? '';
-                },
-              ),
-              const SizedBox(height: 60),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0.0),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                      minimumSize: const Size(232, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                      backgroundColor: const Color.fromRGBO(46, 204, 113, 1)),
-                  child: const Text(
-                    'Добавить',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
-                  ),
-                ),
-              ),
+              ),              
             ],
           );
         },
@@ -278,6 +280,7 @@ Future<void> _dialogIngredientBuilder(BuildContext context) {
 
 Future<void> _dialogRecepStepBuilder(BuildContext context) {
   return showDialog(
+    useSafeArea : false,
     context: context,
     builder: (context) {
       return StatefulBuilder(
@@ -291,10 +294,11 @@ Future<void> _dialogRecepStepBuilder(BuildContext context) {
             backgroundColor: Colors.white,
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0.0))),
             contentPadding: const EdgeInsets.all(0.0),
+            scrollable: true,
             actions: <Widget>[
               Form(
                 key: formKey,
-                child: Column(
+                child: Column(                  
                   children: [
                     TextFormField(
                       decoration: const InputDecoration(
@@ -312,91 +316,93 @@ Future<void> _dialogRecepStepBuilder(BuildContext context) {
                         textControllerStepDesc.text = value ?? '';
                       },
                     ),
+                
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          'Длительность шага',
+                          style: TextStyle(fontSize: 10, color: Color.fromRGBO(0, 0, 0, 1)),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: '',
+                              labelText: 'Минуты',
+                              filled: true,
+                              fillColor: Color.fromRGBO(236, 236, 236, 1),
+                              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                              isDense: true,
+                            ),
+                            maxLines: 1,
+                            controller: textControllerStepMinute,
+                            onSaved: (value) {
+                              textControllerStepMinute.text = value ?? '';
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              hintText: '',
+                              labelText: 'Секунды',
+                              filled: true,
+                              fillColor: Color.fromRGBO(236, 236, 236, 1),
+                              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                              isDense: true,
+                            ),
+                            maxLines: 1,
+                            controller: textControllerStepSecund,
+                            onSaved: (value) {
+                              textControllerStepSecund.text = value ?? '';
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0.0),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                            minimumSize: const Size(232, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                            ),
+                            backgroundColor: const Color.fromRGBO(46, 204, 113, 1)),
+                        child: const Text(
+                          'Добавить',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Text(
-                    'Длительность шага',
-                    style: TextStyle(fontSize: 10, color: Color.fromRGBO(0, 0, 0, 1)),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: '',
-                        labelText: 'Минуты',
-                        filled: true,
-                        fillColor: Color.fromRGBO(236, 236, 236, 1),
-                        contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-                        isDense: true,
-                      ),
-                      maxLines: 1,
-                      controller: textControllerStepMinute,
-                      onSaved: (value) {
-                        textControllerStepMinute.text = value ?? '';
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Expanded(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: '',
-                        labelText: 'Секунды',
-                        filled: true,
-                        fillColor: Color.fromRGBO(236, 236, 236, 1),
-                        contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-                        isDense: true,
-                      ),
-                      maxLines: 1,
-                      controller: textControllerStepSecund,
-                      onSaved: (value) {
-                        textControllerStepSecund.text = value ?? '';
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 60),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0.0),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                      minimumSize: const Size(232, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                      backgroundColor: const Color.fromRGBO(46, 204, 113, 1)),
-                  child: const Text(
-                    'Добавить',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
-                  ),
-                ),
-              ),
+              
             ],
           );
         },
