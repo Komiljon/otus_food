@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/food_detail.dart';
+import '../model/ingridients.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/ingredient_row.dart';
 import '../widgets/ingredient_steps.dart';
@@ -15,12 +16,14 @@ class FoodDetail extends StatefulWidget {
 class _FoodDetailState extends State<FoodDetail> {
   late int id;
   late Future<FoodDetailModel> foodDetailData;
+  late Future<IngredientModel> ingridientsData;
 
   @override
   void initState() {
     super.initState();
     id = widget.id;
     foodDetailData = getFoodData(id);
+    ingridientsData = getIngridientList(id);
   }
   
   @override
@@ -47,6 +50,9 @@ class _FoodDetailState extends State<FoodDetail> {
             child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
             children: [
               FutureBuilder<FoodDetailModel>(
                 future: foodDetailData,
@@ -58,11 +64,10 @@ class _FoodDetailState extends State<FoodDetail> {
                         shrinkWrap: true,
                         itemCount: 1,
                         itemBuilder: (context, index) {
-                          return Column(
+                          return Column(  
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.max,
-        
                             children: [
                               Text('${snapshot.data?.name}', style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),),
                               const SizedBox(height: 10,),
@@ -96,93 +101,6 @@ class _FoodDetailState extends State<FoodDetail> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 16,),
-                              const Text('Ингредиенты', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                              const SizedBox(height: 16,),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(121, 118, 118, 1),
-                                    width: 3
-                                  ),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                child:const Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      IngredietRow(name: 'Соевый соус', wedghts: '8 ст. ложек',),
-                                      SizedBox(height: 5,),
-                                      IngredietRow(name: 'Вода', wedghts: '8 ст. ложек',),
-                                      SizedBox(height: 5,),
-                                      IngredietRow(name: 'Мёд', wedghts: '3 ст. ложки',),
-
-                                      SizedBox(height: 5,),
-                                      IngredietRow(name: 'Коричневый сахар', wedghts: '2 ст. ложки',),
-                                      SizedBox(height: 5,),
-                                      IngredietRow(name: 'Чеснок', wedghts: '3 зубчика',),
-                                      SizedBox(height: 5,),
-                                      IngredietRow(name: 'Тёртый свежий имбирь', wedghts: '1 ст. ложка',),
-                                      SizedBox(height: 5,),
-                                      IngredietRow(name: 'Лимонный сок', wedghts: '1¹⁄₂ ст. ложки',),
-                                      SizedBox(height: 5,),
-                                      IngredietRow(name: 'Кукурузный крахмал', wedghts: '1 ст. ложка',),
-                                      SizedBox(height: 5,),
-                                      IngredietRow(name: 'Растительное масло', wedghts: '1 ч. ложка',),
-                                      SizedBox(height: 5,),
-                                      IngredietRow(name: 'Филе лосося или сёмги', wedghts: '680 г',),
-                                      SizedBox(height: 5,),
-                                      IngredietRow(name: 'Кунжут', wedghts: 'по вкусу',),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 16,),
-                              const Text('Шаги приготовления', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-        
-                              const SizedBox(height: 16,),
-                              const IngredietSteps(nomer: '1', ingText: 'В маленькой кастрюле соедините соевый соус, 6 столовых ложек воды, мёд, сахар, измельчённый чеснок, имбирь и лимонный сок.', ingTime: '06:00',),
-        
-                              const SizedBox(height: 16,),
-                              const IngredietSteps(nomer: '2', ingText: 'Поставьте на средний огонь и, помешивая, доведите до лёгкого кипения.', ingTime: '07:00',),
-        
-                              const SizedBox(height: 16,),
-                              const IngredietSteps(nomer: '3', ingText: 'Смешайте оставшуюся воду с крахмалом. Добавьте в кастрюлю и перемешайте.', ingTime: '06:00',),
-
-                              const SizedBox(height: 16,),
-                              const IngredietSteps(nomer: '4', ingText: 'Готовьте, непрерывно помешивая венчиком, 1 минуту. Снимите с огня и немного остудите.', ingTime: '01:00',),
-
-                              const SizedBox(height: 16,),
-                              const IngredietSteps(nomer: '5', ingText: 'Смажьте форму маслом и выложите туда рыбу. Полейте её соусом.', ingTime: '06:00',),
-
-                              const SizedBox(height: 16,),
-                              const IngredietSteps(nomer: '5', ingText: 'Поставьте в разогретую до 200 °C духовку примерно на 15 минут.', ingTime: '15:00',),
-
-                              const SizedBox(height: 16,),
-                              const IngredietSteps(nomer: '7', ingText: 'Перед подачей полейте соусом из формы и посыпьте кунжутом.', ingTime: '06:00',),
-
-                              const SizedBox(height: 16,),
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color.fromRGBO(22, 89, 50, 1), // This is what you need!
-                                  ),
-                                  onPressed: () {},
-                                  child: const Text('Начать готовить', style: TextStyle(color: Colors.white),),
-                                                              ),
-                                ],
-                              ),
                             ],
                           );
                         },
@@ -193,6 +111,89 @@ class _FoodDetailState extends State<FoodDetail> {
                   return const Center(child: CircularProgressIndicator());
                 }
               ), 
+              const SizedBox(height: 16,),
+              const Text('Ингредиенты', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+              const SizedBox(height: 16,),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color.fromRGBO(121, 118, 118, 1),
+                    width: 3
+                  ),
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                child:Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FutureBuilder<IngredientModel>(
+                  future: ingridientsData,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.separated(
+                        separatorBuilder: (context, index) => const SizedBox(
+                          height: 8,
+                        ),
+                        itemBuilder: (context, index) => IngredietRow(
+                          name: snapshot.data!.ingredients?[index].name, wedghts: snapshot.data!.ingredients?[index].count,
+                        ),
+                        scrollDirection: Axis.vertical,
+                        physics: const NeverScrollableScrollPhysics(),                     
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.ingredients!.length,
+                      );
+                    } else if (snapshot.hasError) {
+                      return const Center(child: Text('Error'));
+                    }
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                ),
+                ),
+              ),
+              const SizedBox(height: 16,),
+              const Text('Шаги приготовления', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+
+              const SizedBox(height: 16,),
+              const IngredietSteps(nomer: '1', ingText: 'В маленькой кастрюле соедините соевый соус, 6 столовых ложек воды, мёд, сахар, измельчённый чеснок, имбирь и лимонный сок.', ingTime: '06:00',),
+
+              const SizedBox(height: 16,),
+              const IngredietSteps(nomer: '2', ingText: 'Поставьте на средний огонь и, помешивая, доведите до лёгкого кипения.', ingTime: '07:00',),
+
+              const SizedBox(height: 16,),
+              const IngredietSteps(nomer: '3', ingText: 'Смешайте оставшуюся воду с крахмалом. Добавьте в кастрюлю и перемешайте.', ingTime: '06:00',),
+
+              const SizedBox(height: 16,),
+              const IngredietSteps(nomer: '4', ingText: 'Готовьте, непрерывно помешивая венчиком, 1 минуту. Снимите с огня и немного остудите.', ingTime: '01:00',),
+
+              const SizedBox(height: 16,),
+              const IngredietSteps(nomer: '5', ingText: 'Смажьте форму маслом и выложите туда рыбу. Полейте её соусом.', ingTime: '06:00',),
+
+              const SizedBox(height: 16,),
+              const IngredietSteps(nomer: '5', ingText: 'Поставьте в разогретую до 200 °C духовку примерно на 15 минут.', ingTime: '15:00',),
+
+              const SizedBox(height: 16,),
+              const IngredietSteps(nomer: '7', ingText: 'Перед подачей полейте соусом из формы и посыпьте кунжутом.', ingTime: '06:00',),
+
+              const SizedBox(height: 16,),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(22, 89, 50, 1), // This is what you need!
+                  ),
+                  onPressed: () {},
+                  child: const Text('Начать готовить', style: TextStyle(color: Colors.white),),
+                                              ),
+                ],
+              ),
             ],
           ),
         )),
