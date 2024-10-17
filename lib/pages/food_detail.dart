@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/food_detail.dart';
 import '../model/ingridients.dart';
+import '../model/recept_steps.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/ingredient_row.dart';
 import '../widgets/ingredient_steps.dart';
@@ -17,6 +18,7 @@ class _FoodDetailState extends State<FoodDetail> {
   late int id;
   late Future<FoodDetailModel> foodDetailData;
   late Future<IngredientModel> ingridientsData;
+  late Future<StepsModel> receptStepsData;
 
   @override
   void initState() {
@@ -24,6 +26,7 @@ class _FoodDetailState extends State<FoodDetail> {
     id = widget.id;
     foodDetailData = getFoodData(id);
     ingridientsData = getIngridientList(id);
+    receptStepsData = getReceptSteps(id);
   }
   
   @override
@@ -158,25 +161,32 @@ class _FoodDetailState extends State<FoodDetail> {
                     ),
 
               const SizedBox(height: 16,),
-              const IngredietSteps(nomer: '1', ingText: 'В маленькой кастрюле соедините соевый соус, 6 столовых ложек воды, мёд, сахар, измельчённый чеснок, имбирь и лимонный сок.', ingTime: '06:00',),
-
-              const SizedBox(height: 16,),
-              const IngredietSteps(nomer: '2', ingText: 'Поставьте на средний огонь и, помешивая, доведите до лёгкого кипения.', ingTime: '07:00',),
-
-              const SizedBox(height: 16,),
-              const IngredietSteps(nomer: '3', ingText: 'Смешайте оставшуюся воду с крахмалом. Добавьте в кастрюлю и перемешайте.', ingTime: '06:00',),
-
-              const SizedBox(height: 16,),
-              const IngredietSteps(nomer: '4', ingText: 'Готовьте, непрерывно помешивая венчиком, 1 минуту. Снимите с огня и немного остудите.', ingTime: '01:00',),
-
-              const SizedBox(height: 16,),
-              const IngredietSteps(nomer: '5', ingText: 'Смажьте форму маслом и выложите туда рыбу. Полейте её соусом.', ingTime: '06:00',),
-
-              const SizedBox(height: 16,),
-              const IngredietSteps(nomer: '5', ingText: 'Поставьте в разогретую до 200 °C духовку примерно на 15 минут.', ingTime: '15:00',),
-
-              const SizedBox(height: 16,),
-              const IngredietSteps(nomer: '7', ingText: 'Перед подачей полейте соусом из формы и посыпьте кунжутом.', ingTime: '06:00',),
+              SizedBox(
+                child: FutureBuilder<StepsModel>(
+                    future: receptStepsData,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return ListView.separated(
+                          separatorBuilder: (context, index) => const SizedBox(
+                            height: 16,
+                          ),
+                          itemBuilder: (context, index) => IngredietSteps(
+                            nomer: snapshot.data!.receptsteps![index].num.toString(),
+                            ingText: snapshot.data!.receptsteps![index].ingText.toString(),
+                            ingTime: snapshot.data!.receptsteps![index].ingTime.toString(),
+                          ),
+                          scrollDirection: Axis.vertical,
+                          physics: const NeverScrollableScrollPhysics(),                     
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.receptsteps!.length,
+                        );
+                      } else if (snapshot.hasError) {
+                        return const Center(child: Text('Error'));
+                      }
+                      return const Center(child: CircularProgressIndicator());
+                    },
+                  ),
+              ),            
 
               const SizedBox(height: 16,),
 
