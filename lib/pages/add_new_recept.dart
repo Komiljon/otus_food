@@ -228,8 +228,8 @@ Future<void> _dialogIngredientBuilder(BuildContext context) {
                       onSaved: (value) {
                         textControllerIngrName.text = value ?? '';
                       },
+                      validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
                     ),
-
                     const SizedBox(
                       height: 16,
                     ),
@@ -246,13 +246,18 @@ Future<void> _dialogIngredientBuilder(BuildContext context) {
                       onSaved: (value) {
                         textControllerIngrCount.text = value ?? '';
                       },
+                      validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
                     ),
                     const SizedBox(height: 60),
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0.0),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            print('validate');
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                             minimumSize: const Size(232, 48),
@@ -266,10 +271,9 @@ Future<void> _dialogIngredientBuilder(BuildContext context) {
                         ),
                       ),
                     ),
-
                   ],
                 ),
-              ),              
+              ),
             ],
           );
         },
@@ -280,7 +284,7 @@ Future<void> _dialogIngredientBuilder(BuildContext context) {
 
 Future<void> _dialogRecepStepBuilder(BuildContext context) {
   return showDialog(
-    useSafeArea : false,
+    useSafeArea: false,
     context: context,
     builder: (context) {
       return StatefulBuilder(
@@ -298,7 +302,7 @@ Future<void> _dialogRecepStepBuilder(BuildContext context) {
             actions: <Widget>[
               Form(
                 key: formKey,
-                child: Column(                  
+                child: Column(
                   children: [
                     TextFormField(
                       decoration: const InputDecoration(
@@ -315,8 +319,8 @@ Future<void> _dialogRecepStepBuilder(BuildContext context) {
                       onSaved: (value) {
                         textControllerStepDesc.text = value ?? '';
                       },
+                      validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
                     ),
-                
                     const SizedBox(
                       height: 16,
                     ),
@@ -356,6 +360,7 @@ Future<void> _dialogRecepStepBuilder(BuildContext context) {
                             onSaved: (value) {
                               textControllerStepMinute.text = value ?? '';
                             },
+                            validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
                           ),
                         ),
                         const SizedBox(
@@ -376,6 +381,7 @@ Future<void> _dialogRecepStepBuilder(BuildContext context) {
                             onSaved: (value) {
                               textControllerStepSecund.text = value ?? '';
                             },
+                            validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
                           ),
                         ),
                       ],
@@ -385,7 +391,11 @@ Future<void> _dialogRecepStepBuilder(BuildContext context) {
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0.0),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            print('validate');
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                             minimumSize: const Size(232, 48),
@@ -402,7 +412,6 @@ Future<void> _dialogRecepStepBuilder(BuildContext context) {
                   ],
                 ),
               ),
-              
             ],
           );
         },
