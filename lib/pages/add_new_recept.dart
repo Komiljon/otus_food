@@ -255,7 +255,7 @@ Future<void> _dialogIngredientBuilder(BuildContext context) {
                       child: ElevatedButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            print('validate');
+                            formKey.currentState?.save();
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -393,7 +393,7 @@ Future<void> _dialogRecepStepBuilder(BuildContext context) {
                       child: ElevatedButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            print('validate');
+                            formKey.currentState?.save();
                           }
                         },
                         style: ElevatedButton.styleFrom(
