@@ -35,12 +35,18 @@ class FoodCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Image(
-                  image: AssetImage(cardImage),
+                Image.network(
+                  cardImage,
                   width: 149,
                   height: 136,
                   fit: BoxFit.cover,
                 ),
+                // Image(
+                //   image: AssetImage(cardImage),
+                //   width: 149,
+                //   height: 136,
+                //   fit: BoxFit.cover,
+                // ),
                 const SizedBox(
                   width: 8,
                 ),

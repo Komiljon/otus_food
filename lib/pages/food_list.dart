@@ -42,7 +42,7 @@ class _FoodListScreenState extends State<FoodListScreen> {
                   id: snapshot.data?.foods[index].id ?? 0,
                   cardText: snapshot.data?.foods[index].name ?? 'нет названиия',
                   cardImage: snapshot.data?.foods[index].photo ?? '',
-                  time: snapshot.data?.foods[index].duration ?? '',
+                  time: snapshot.data?.foods[index].duration.toString() ?? '0',
                 ),
                 itemCount: snapshot.data!.foods.length,
               );
