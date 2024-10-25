@@ -4,7 +4,7 @@ import '../pages/food_detail.dart';
 
 class FoodCard extends StatelessWidget {
   final int id;
-  final String cardText;  
+  final String cardText;
   final String cardImage;
   final String time;
 
@@ -13,13 +13,8 @@ class FoodCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:() {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-              builder: (context) => FoodDetail(id: id)
-          ),
-          (route) => true);
+      onTap: () {
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => FoodDetail(id: id)), (route) => true);
       },
       child: Card(
         shadowColor: Colors.white,
@@ -35,11 +30,15 @@ class FoodCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Image.network(
-                  cardImage,
+                SizedBox(
                   width: 149,
                   height: 136,
-                  fit: BoxFit.cover,
+                  child: Image.network(
+                    cardImage,
+                    width: 149,
+                    height: 136,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 // Image(
                 //   image: AssetImage(cardImage),
@@ -55,6 +54,7 @@ class FoodCard extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           cardText,
@@ -83,7 +83,7 @@ class FoodCard extends StatelessWidget {
                             ),
                             Expanded(
                               child: Text(
-                                time,
+                                '$time минут',
                                 style: const TextStyle(
                                   fontSize: 16.0,
                                   fontFamily: 'Roboto',

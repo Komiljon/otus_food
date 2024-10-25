@@ -43,7 +43,7 @@ class Foods {
 
 Future<FoodsList> getFoodsList() async {
   var url = 'https://foodapi.dzolotov.tech/recipe';
-  
+
   final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 30));
   if (response.statusCode == 200) {
     var res = '{"foods": ${response.body}}';
@@ -54,4 +54,7 @@ Future<FoodsList> getFoodsList() async {
   } else {
     throw Exception('Нет соеденения с сервером: ${response.reasonPhrase}');
   }
+
+  //   const response =
+  //       '{"foods": [{"id": 0,"name": "Лосось в соусе терияки","duration": "45 минут","photo": "assets/images/f1.png"},{"id": 1,"name": "Поке боул с сыром тофу","duration": "30 минут","photo": "assets/images/f2.png"},{"id": 2,"name": "Стейк из говядины по-грузински с кукурузой","duration": "1 час 45 минут","photo": "assets/images/f3.png"},{"id": 3,"name": "Тосты с голубикой и бананом","duration": "45 минут","photo": "assets/images/f4.png"},{"id": 4,"name": "Паста с морепродуктами","duration": "25 минут","photo": "assets/images/f5.png"},{"id": 5,"name": "Бургер с двумя котлетами","duration": "1 час","photo": "assets/images/f6.png"},{"id": 5,"name": "Бургер с двумя котлетами","duration": "1 час","photo": "assets/images/f6.png"},{"id": 6,"name": "Пицца Маргарита домашняя","duration": "25 минут","photo": "assets/images/f7.png"}]}';
 }
