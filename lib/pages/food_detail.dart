@@ -359,7 +359,8 @@ class _FoodDetailState extends State<FoodDetail> {
                             ),
                         ),
                       ],
-                      )
+                      ),
+                      
                     ],
                   ),
                 ),
