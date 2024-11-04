@@ -26,7 +26,7 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
         Navigator.pushNamedAndRemoveUntil(context, '/', (route) => true);
         break;
       case 2:
-        Navigator.pushNamedAndRemoveUntil(context, '/start', (route) => true);
+        Navigator.pushNamedAndRemoveUntil(context, '/favorites', (route) => true);
         break;
       case 3:
         Navigator.pushNamedAndRemoveUntil(context, '/auth', (route) => true);

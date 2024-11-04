@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'db/hive_service.dart';
 import 'pages/add_new_recept.dart';
 import 'pages/auth.dart';
+import 'pages/favorites_list.dart';
 import 'pages/food_detail.dart';
 import 'pages/food_list.dart';
 import 'pages/start.dart';
+import 'providers/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HiveService.initHive(); // Инициализация БД
+  runApp(MultiBlocProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => FavProdProvider()..getFavoriteProdcount()), // Избранные рецепты
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,6 +39,7 @@ class MyApp extends StatelessWidget {
           '/start': (context) => const StartPage(),
           '/': (context) => const FoodListScreen(),
           '/food': (context) => const FoodDetail(id: 0),
+          '/favorites': (context) => const FavoriteFoodeListScreen(),
           '/auth': (context) => const LoginRegister(),
           '/addnewrecept': (context) => const AddNewRecept(),
         });
