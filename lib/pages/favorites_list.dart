@@ -52,8 +52,8 @@ class _FavoriteFoodeListScreenState extends State<FavoriteFoodeListScreen> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: 16,
+                separatorBuilder: (context, index) => SizedBox(
+                  height: favorite ? 16 : 0,
                 ),
                 itemBuilder: (context, index) {
                   favorite = checkFavoriteProduct(snapshot.data?.foods[index].id ?? 0);
@@ -63,6 +63,7 @@ class _FavoriteFoodeListScreenState extends State<FavoriteFoodeListScreen> {
                       cardText: snapshot.data?.foods[index].name ?? 'нет названиия',
                       cardImage: snapshot.data?.foods[index].photo ?? '',
                       time: snapshot.data?.foods[index].duration.toString() ?? '0',
+                      fovorite: true,
                     );
                   } else {
                     return Container();
