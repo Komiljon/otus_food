@@ -11,7 +11,7 @@ class DBProvider {
 
   static late Database _database;
 
-  String studentsTable = 'Ingredientdbs';
+  String ingredientsTable = 'Ingredientdbs';
   String columnId = 'id';
   String columnName = 'name';
   String columnCount = 'count';
@@ -36,38 +36,38 @@ class DBProvider {
 
   void _createDB(Database db, int version) async {
     await db.execute(
-      'CREATE TABLE $studentsTable($columnId INTEGER PRIMARY KEY AUTOINCREMENT, $columnName TEXT, $columnCount TEXT)',
+      'CREATE TABLE $ingredientsTable($columnId INTEGER PRIMARY KEY AUTOINCREMENT, $columnName TEXT, $columnCount TEXT)',
     );
   }
 
   // READ
   Future<List<Ingredientdb>> getIngredientdbs() async {
     Database db = await database;
-    final List<Map<String, dynamic>> studentsMapList =
-        await db.query(studentsTable);
-    final List<Ingredientdb> studentsList = [];
-    for (var studentMap in studentsMapList) {
-      studentsList.add(Ingredientdb.fromMap(studentMap));
+    final List<Map<String, dynamic>> ingredientsMapList =
+        await db.query(ingredientsTable);
+    final List<Ingredientdb> ingredientsList = [];
+    for (var ingredientMap in ingredientsMapList) {
+      ingredientsList.add(Ingredientdb.fromMap(ingredientMap));
     }
 
-    return studentsList;
+    return ingredientsList;
   }
 
   // INSERT
-  Future<Ingredientdb> insertIngredientdb(Ingredientdb student) async {
+  Future<Ingredientdb> insertIngredientdb(Ingredientdb ingredient) async {
     Database db = await database;
-    student.id = await db.insert(studentsTable, student.toMap());
-    return student;
+    ingredient.id = await db.insert(ingredientsTable, ingredient.toMap());
+    return ingredient;
   }
 
   // UPDATE
-  Future<int> updateIngredientdb(Ingredientdb student) async {
+  Future<int> updateIngredientdb(Ingredientdb ingredient) async {
     Database db = await database;
     return await db.update(
-      studentsTable,
-      student.toMap(),
+      ingredientsTable,
+      ingredient.toMap(),
       where: '$columnId = ?',
-      whereArgs: [student.id],
+      whereArgs: [ingredient.id],
     );
   }
 
@@ -75,7 +75,7 @@ class DBProvider {
   Future<int> deleteIngredientdb(int? id) async {
     Database db = await database;
     return await db.delete(
-      studentsTable,
+      ingredientsTable,
       where: '$columnId = ?',
       whereArgs: [id],
     );
