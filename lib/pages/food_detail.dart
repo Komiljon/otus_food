@@ -27,6 +27,7 @@ class _FoodDetailState extends State<FoodDetail> {
 
   bool actives = false;
   bool favorite = false;
+  final CustomPainter painter = SimplePainter();
 
   checkFavoriteProduct(int id) {
     List<DbModel> listFavProduct = <DbModel>[];
@@ -195,14 +196,37 @@ class _FoodDetailState extends State<FoodDetail> {
                                       height: 16,
                                     ),
                                     Center(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(5.0),
-                                        child: Image.network(
-                                          '${snapshot.data?.photo}',
-                                          width: MediaQuery.of(context).size.width - 20.0,
-                                          height: 220,
-                                          fit: BoxFit.cover,
-                                        ),
+                                      child: Stack(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(5.0),
+                                            child: Image.network(
+                                              '${snapshot.data?.photo}',
+                                              width: MediaQuery.of(context).size.width - 20.0,
+                                              height: 220,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                          if (favorite)
+                                            Positioned(
+                                              right: 5,
+                                              bottom: 20,
+                                              child: CustomPaint(
+                                                size: const Size(66, 24),
+                                                painter: painter,
+                                              ),
+                                            ),
+                                          if (favorite)
+                                            Positioned(
+                                              right: 10,
+                                              bottom: 22,
+                                              child: Text(
+                                                widget.id.toString(),
+                                                style: const TextStyle(
+                                                    color: Colors.white, fontSize: 14, fontWeight: FontWeight.w800),
+                                              ),
+                                            ),
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -367,5 +391,29 @@ class _FoodDetailState extends State<FoodDetail> {
       ),
       bottomNavigationBar: const AkaBottomNavigationBar(curIndexs: 0, selected: true),
     );
+  }
+}
+
+class SimplePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()
+      ..color = const Color.fromRGBO(46, 204, 113, 1)
+      ..style = PaintingStyle.fill;
+
+    Path path = Path();
+    path.moveTo(0, 0);
+    path.lineTo(66, 0);
+    path.lineTo(66, 24);
+    path.lineTo(0, 24);
+    path.lineTo(30, 12);
+    path.close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return false;
   }
 }

@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 //import 'package:sqflite/sqlite_api.dart';
-import '../model/ingredients_dm_model.dart';
+import '../model/comments_db_model.dart';
 
 class DBProvider {
   DBProvider._();
@@ -11,10 +11,10 @@ class DBProvider {
 
   static late Database _database;
 
-  String ingredientsTable = 'Ingredientdbs';
+  String commentsTable = 'Commentdbs';
   String columnId = 'id';
   String columnName = 'name';
-  String columnCount = 'count';
+  String columnCommentText = 'comment';
 
   Future<Database> get database async {
     //if (_database != null) return _database;
@@ -25,57 +25,56 @@ class DBProvider {
 
   Future<Database> _initDB() async {
     Directory dir = await getApplicationDocumentsDirectory();
-    String path = '${dir.path}Ingredientdb.db';
+    String path = '${dir.path}Commentdb.db';
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
 
-  // Ingredientdb
+  // Commentdb
   // Id | Name | Count
   // 0    ..
   // 1    ..
 
   void _createDB(Database db, int version) async {
     await db.execute(
-      'CREATE TABLE $ingredientsTable($columnId INTEGER PRIMARY KEY AUTOINCREMENT, $columnName TEXT, $columnCount TEXT)',
+      'CREATE TABLE $commentsTable($columnId INTEGER PRIMARY KEY AUTOINCREMENT, $columnName TEXT, $columnCommentText TEXT)',
     );
   }
 
   // READ
-  Future<List<Ingredientdb>> getIngredientdbs() async {
+  Future<List<Comment>> getCommentdb() async {
     Database db = await database;
-    final List<Map<String, dynamic>> ingredientsMapList =
-        await db.query(ingredientsTable);
-    final List<Ingredientdb> ingredientsList = [];
-    for (var ingredientMap in ingredientsMapList) {
-      ingredientsList.add(Ingredientdb.fromMap(ingredientMap));
+    final List<Map<String, dynamic>> commentsMapList = await db.query(commentsTable);
+    final List<Comment> commentsList = [];
+    for (var commentMap in commentsMapList) {
+      commentsList.add(Comment.fromMap(commentMap));
     }
 
-    return ingredientsList;
+    return commentsList;
   }
 
   // INSERT
-  Future<Ingredientdb> insertIngredientdb(Ingredientdb ingredient) async {
+  Future<Comment> insertCommentdb(Comment comment) async {
     Database db = await database;
-    ingredient.id = await db.insert(ingredientsTable, ingredient.toMap());
-    return ingredient;
+    comment.id = await db.insert(commentsTable, comment.toMap());
+    return comment;
   }
 
   // UPDATE
-  Future<int> updateIngredientdb(Ingredientdb ingredient) async {
+  Future<int> updateCommentdb(Comment comment) async {
     Database db = await database;
     return await db.update(
-      ingredientsTable,
-      ingredient.toMap(),
+      commentsTable,
+      comment.toMap(),
       where: '$columnId = ?',
-      whereArgs: [ingredient.id],
+      whereArgs: [comment.id],
     );
   }
 
   // DELETE
-  Future<int> deleteIngredientdb(int? id) async {
+  Future<int> deleteCommentdb(int? id) async {
     Database db = await database;
     return await db.delete(
-      ingredientsTable,
+      commentsTable,
       where: '$columnId = ?',
       whereArgs: [id],
     );

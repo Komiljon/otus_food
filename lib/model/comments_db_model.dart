@@ -1,21 +1,21 @@
-class Ingredientdb {
+class Comment {
   int? id;
   late String name;
-  late String count;
+  late String comment;
 
-  Ingredientdb(this.id, this.name, this.count);
+  Comment(this.id, this.comment, {this.name = 'Test'});
 
   Map<String, dynamic> toMap() {
     final map = <String, dynamic>{};
     map['id'] = id;
     map['name'] = name;
-    map['count'] = count;
+    map['comment'] = comment;
     return map;
   }
 
-  Ingredientdb.fromMap(Map<String, dynamic> map) {
+  Comment.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     name = map['name'];
-    count = map['count'];
+    comment = map['comment'];
   }
 }
