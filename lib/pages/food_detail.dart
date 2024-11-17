@@ -9,7 +9,7 @@ import '../providers/provider.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/comment_widget.dart';
 import '../widgets/ingredient_row.dart';
-import '../widgets/ingredient_steps.dart';
+import '../widgets/recept_steps.dart';
 
 class FoodDetail extends StatefulWidget {
   final int id;
