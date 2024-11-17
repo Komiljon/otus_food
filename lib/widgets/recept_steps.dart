@@ -59,6 +59,7 @@ class _IngredietStepsState extends State<IngredietSteps> {
                         width: 30,
                         height: 30,
                         decoration: BoxDecoration(
+                          color: widget.checkActive ? const Color.fromRGBO(22, 89, 50, 1) : Colors.transparent,
                           border: Border.all(
                               width: 2,
                               color: widget.colorActive
@@ -69,7 +70,7 @@ class _IngredietStepsState extends State<IngredietSteps> {
                         child: Transform.scale(
                           scale: 1.5,
                           child: Checkbox(
-                              checkColor: const Color.fromRGBO(22, 89, 50, 1),
+                              checkColor: Colors.white,
                               fillColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
                                 if (states.contains(WidgetState.disabled)) {
                                   return Colors.transparent;
