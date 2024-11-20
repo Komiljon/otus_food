@@ -13,6 +13,7 @@ class DBProvider {
 
   String commentsTable = 'Commentdbs';
   String columnId = 'id';
+  String columnCommentId = 'commentid';
   String columnName = 'name';
   String columnCommentText = 'comment';
 
@@ -36,7 +37,7 @@ class DBProvider {
 
   void _createDB(Database db, int version) async {
     await db.execute(
-      'CREATE TABLE $commentsTable($columnId INTEGER PRIMARY KEY AUTOINCREMENT, $columnName TEXT, $columnCommentText TEXT)',
+      'CREATE TABLE $commentsTable($columnId INTEGER PRIMARY KEY AUTOINCREMENT, $columnCommentId INTEGER, $columnName TEXT, $columnCommentText TEXT)',
     );
   }
 

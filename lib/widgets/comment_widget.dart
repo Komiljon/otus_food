@@ -4,8 +4,9 @@ import '../db/database.dart';
 import '../model/comments_db_model.dart';
 
 class CommentWidget extends StatefulWidget {
+  final int id;
   const CommentWidget({
-    super.key,
+    super.key, required this.id,
   });
 
   @override
@@ -104,7 +105,7 @@ class _CommentWidgetState extends State<CommentWidget> {
           future: commentsList,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return generateList(snapshot.data as List<Comment>);
+              return generateList(snapshot.data as List<Comment>, widget.id);
             }
             if (snapshot.data == null || (snapshot.data as List<Comment>).isEmpty) {
               return Container();
@@ -140,10 +141,11 @@ class _CommentWidgetState extends State<CommentWidget> {
                 maxLines: 1,
                 onFieldSubmitted: (value) {
                   if (value.trim() != "") {
-                    DBProvider.db.insertCommentdb(Comment(null, value));
+                    DBProvider.db.insertCommentdb(Comment(null, widget.id, value));
                     setState(() {
                       updateCommentList();
                     });
+                    textControllerComment.text = '';
                   }
                 },
               ),
@@ -179,14 +181,14 @@ class _CommentWidgetState extends State<CommentWidget> {
     );
   }
 
-  SingleChildScrollView generateList(List<Comment> content) {
+  SingleChildScrollView generateList(List<Comment> content, cid) {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Column(
         children: content
             .map((comm) => Padding(
                   padding: const EdgeInsets.only(top: 32),
-                  child: Row(
+                  child: (comm.cid == cid)? Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
@@ -250,7 +252,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                         ),
                       ),
                     ],
-                  ),
+                  ):Container(),
                 ))
             .toList(),
       ),

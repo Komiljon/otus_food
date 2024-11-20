@@ -385,7 +385,7 @@ class _FoodDetailState extends State<FoodDetail> {
             const SizedBox(
               height: 32,
             ),
-            const CommentWidget(),
+            CommentWidget(id:widget.id),
           ],
         ),
       ),
