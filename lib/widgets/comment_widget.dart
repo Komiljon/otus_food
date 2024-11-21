@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../db/database.dart';
 import '../model/comments_db_model.dart';
+import 'package:file_picker/file_picker.dart';
+
+
 
 class CommentWidget extends StatefulWidget {
   final int id;
@@ -19,6 +24,7 @@ class _CommentWidgetState extends State<CommentWidget> {
   var textControllerComment = TextEditingController();
 
   late Future<List<Comment>> commentsList;
+  PlatformFile? selectedFile;
 
   @override
   void initState() {
@@ -29,6 +35,24 @@ class _CommentWidgetState extends State<CommentWidget> {
   updateCommentList() {
     setState(() {
       commentsList = DBProvider.db.getCommentdb();
+    });
+  }
+
+  Future<PlatformFile?> pickFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+    if (result != null) {
+      return result.files.first;
+    } else {
+      // Пользователь отменил выбор файла
+      return null;
+    }
+  }   
+
+  Future<void> selectFile() async {
+    PlatformFile? file = await pickFile();
+    setState(() {
+      selectedFile = file;
     });
   }
 
@@ -141,9 +165,10 @@ class _CommentWidgetState extends State<CommentWidget> {
                 maxLines: 1,
                 onFieldSubmitted: (value) {
                   if (value.trim() != "") {
-                    DBProvider.db.insertCommentdb(Comment(null, widget.id, value));
+                    DBProvider.db.insertCommentdb(Comment(null, widget.id, value, imgsrc:selectedFile?.path ?? ''));
                     setState(() {
                       updateCommentList();
+                      selectedFile = null;
                     });
                     textControllerComment.text = '';
                   }
@@ -164,7 +189,7 @@ class _CommentWidgetState extends State<CommentWidget> {
               child: IconButton(
                 padding: const EdgeInsets.only(left: 5.0, top: 0.0, right: 7.0, bottom: 0.0),
                 constraints: const BoxConstraints(),
-                onPressed: () {},
+                onPressed: () {selectFile();},
                 icon: const Icon(
                   Icons.photo,
                   color: Color.fromRGBO(22, 89, 50, 1),
@@ -244,7 +269,9 @@ class _CommentWidgetState extends State<CommentWidget> {
                               const SizedBox(
                                 height: 16,
                               ),
-                              Image.asset(
+                              (comm.imgsrc.isNotEmpty)?
+                              Image.file(File(comm.imgsrc))
+                              :Image.asset(
                                 'assets/images/comment_img.png',
                               ),
                             ],

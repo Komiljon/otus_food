@@ -16,6 +16,7 @@ class DBProvider {
   String columnCommentId = 'commentid';
   String columnName = 'name';
   String columnCommentText = 'comment';
+  String columnImageSrc = 'imgsrc';
 
   Future<Database> get database async {
     //if (_database != null) return _database;
@@ -37,7 +38,7 @@ class DBProvider {
 
   void _createDB(Database db, int version) async {
     await db.execute(
-      'CREATE TABLE $commentsTable($columnId INTEGER PRIMARY KEY AUTOINCREMENT, $columnCommentId INTEGER, $columnName TEXT, $columnCommentText TEXT)',
+      'CREATE TABLE $commentsTable($columnId INTEGER PRIMARY KEY AUTOINCREMENT, $columnCommentId INTEGER, $columnName TEXT, $columnCommentText TEXT, $columnImageSrc TEXT)',
     );
   }
 

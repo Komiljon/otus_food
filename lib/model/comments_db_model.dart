@@ -3,8 +3,9 @@ class Comment {
   int? cid;
   late String name;
   late String comment;
+  late String imgsrc;
 
-  Comment(this.id, this.cid, this.comment, {this.name = 'Test'});
+  Comment(this.id, this.cid, this.comment, {this.name = 'Test', this.imgsrc = ''});
 
   Map<String, dynamic> toMap() {
     final map = <String, dynamic>{};
@@ -12,6 +13,7 @@ class Comment {
     map['commentid'] = cid??0;
     map['name'] = name;
     map['comment'] = comment;
+    map['imgsrc'] = imgsrc;
     return map;
   }
 
@@ -20,5 +22,6 @@ class Comment {
     cid =  map['commentid'];
     name = map['name'];
     comment = map['comment'];
+    imgsrc = map['imgsrc'];
   }
 }
