@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class IngredietSteps extends StatefulWidget {
   final bool colorActive;
-  final bool checkActive;
+  bool checkActive;
   final String nomer;
   final String ingText;
   final String ingTime;
 
-  const IngredietSteps({
+  IngredietSteps({
     super.key,
     required this.colorActive,
     required this.checkActive,
@@ -84,7 +84,9 @@ class _IngredietStepsState extends State<IngredietSteps> {
                               ),
                               value: widget.checkActive,
                               onChanged: (value) {
-                                setState(() {});
+                                setState(() {
+                                  widget.checkActive = value ?? false;
+                                });
                               }),
                         ),
                       ),
