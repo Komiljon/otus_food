@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../model/faderouter.dart';
 import '../model/food_list.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/foodlist_cards.dart';
+import 'add_new_recept.dart';
 
 class FoodListScreen extends StatefulWidget {
   const FoodListScreen({super.key});
@@ -58,7 +60,12 @@ class _FoodListScreenState extends State<FoodListScreen> {
         backgroundColor: Colors.green,
         elevation: 0,
         onPressed: () {
-          Navigator.pushNamedAndRemoveUntil(context, '/addnewrecept', (route) => true);
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            FadeRoute(page: const AddNewRecept()), // Используем FadeRoute здесь
+          );
+          //Navigator.pushNamedAndRemoveUntil(context, '/addnewrecept', (route) => true);
         },
         child: const Icon(Icons.add),
       ),

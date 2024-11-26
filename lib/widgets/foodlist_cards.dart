@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../model/faderouter.dart';
 import '../pages/food_detail.dart';
 
 class FoodCard extends StatefulWidget {
@@ -25,8 +26,13 @@ class _FoodCardState extends State<FoodCard> {
       children: [
         GestureDetector(
           onTap: () {
-            Navigator.pushAndRemoveUntil(
-                context, MaterialPageRoute(builder: (context) => FoodDetail(id: widget.id)), (route) => true);
+            Navigator.pop(context);
+            Navigator.push(
+             context,
+             FadeRoute(page: FoodDetail(id: widget.id)), // Используем FadeRoute здесь
+            );
+            // Navigator.pushAndRemoveUntil(
+            //     context, MaterialPageRoute(builder: (context) => FoodDetail(id: widget.id)), (route) => true);
           },
           child: Card(
             shadowColor: Colors.white,
