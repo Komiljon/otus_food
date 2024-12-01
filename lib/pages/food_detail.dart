@@ -305,7 +305,7 @@ class _FoodDetailState extends State<FoodDetail> {
                               ),
                               itemBuilder: (context, index) => IngredietSteps(
                                 colorActive: actives,
-                                checkActive: (index == 0) ? actives : false,
+                                checkActiveindex: index,
                                 nomer: snapshot.data!.receptsteps![index].num.toString(),
                                 ingText: snapshot.data!.receptsteps![index].ingText.toString(),
                                 ingTime: snapshot.data!.receptsteps![index].ingTime.toString(),
@@ -385,7 +385,7 @@ class _FoodDetailState extends State<FoodDetail> {
             const SizedBox(
               height: 32,
             ),
-            CommentWidget(id:widget.id),
+            CommentWidget(id: widget.id),
           ],
         ),
       ),
