@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/bottom_navbar.dart';
+
 class AddNewRecept extends StatefulWidget {
   const AddNewRecept({super.key});
 
@@ -455,6 +457,7 @@ class _AddNewReceptState extends State<AddNewRecept> {
           ),
         ),
       ),
+      bottomNavigationBar: const AkaBottomNavigationBar(curIndexs: 0, selected: true),
     );
   }
 }

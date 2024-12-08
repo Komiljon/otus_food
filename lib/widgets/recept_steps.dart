@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class IngredietSteps extends StatefulWidget {
   final bool colorActive;
-  final bool checkActive;
   final String nomer;
   final String ingText;
   final String ingTime;
+  final int checkActiveindex;
 
   const IngredietSteps({
     super.key,
     required this.colorActive,
-    required this.checkActive,
+    required this.checkActiveindex,
     required this.nomer,
     required this.ingText,
     required this.ingTime,
@@ -21,6 +21,13 @@ class IngredietSteps extends StatefulWidget {
 }
 
 class _IngredietStepsState extends State<IngredietSteps> {
+  late bool checked;
+  @override
+  void initState() {
+    super.initState();
+    checked = (widget.checkActiveindex == 0 && widget.colorActive) ? true : false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,10 +62,12 @@ class _IngredietStepsState extends State<IngredietSteps> {
                   flex: 1,
                   child: Column(
                     children: [
-                      Container(
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 900),
                         width: 30,
                         height: 30,
                         decoration: BoxDecoration(
+                          color: checked ? const Color.fromRGBO(22, 89, 50, 1) : Colors.transparent,
                           border: Border.all(
                               width: 2,
                               color: widget.colorActive
@@ -69,11 +78,8 @@ class _IngredietStepsState extends State<IngredietSteps> {
                         child: Transform.scale(
                           scale: 1.5,
                           child: Checkbox(
-                              checkColor: const Color.fromRGBO(22, 89, 50, 1),
+                              checkColor: Colors.white,
                               fillColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
-                                if (states.contains(WidgetState.disabled)) {
-                                  return Colors.transparent;
-                                }
                                 return Colors.transparent;
                               }),
                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -81,9 +87,13 @@ class _IngredietStepsState extends State<IngredietSteps> {
                                 width: 0,
                                 color: Colors.transparent,
                               ),
-                              value: widget.checkActive,
+                              value: checked,
                               onChanged: (value) {
-                                setState(() {});
+                                if (widget.colorActive) {
+                                  setState(() {
+                                    checked = value ?? false;
+                                  });
+                                }
                               }),
                         ),
                       ),

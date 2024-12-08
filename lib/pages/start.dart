@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../model/faderouter.dart';
+import 'food_list.dart';
+
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
 
@@ -15,8 +18,13 @@ class _StartPageState extends State<StartPage> {
     super.initState();
 
     Timer(const Duration(milliseconds: 2000), () {
+      
       Navigator.pop(context);
-      Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+      Navigator.push(
+       context,
+       FadeRoute(page: const FoodListScreen()), // Используем FadeRoute здесь
+      );
+      //Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
     });
   }
 

@@ -2,6 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../model/faderouter.dart';
+import '../pages/auth.dart';
+import '../pages/favorites_list.dart';
+import '../pages/food_list.dart';
+
 class AkaBottomNavigationBar extends StatefulWidget {
   final int curIndexs;
   final bool selected;
@@ -20,19 +25,45 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
   void _onItemTapped(int index) {
     switch (index) {
       case 0:
-        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+        Navigator.pop(context);
+        Navigator.push(
+          context,
+          FadeRoute(page: const FoodListScreen()), // Используем FadeRoute здесь
+        );
+        //context.go('/home');
+        //Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
         break;
       case 1:
-        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => true);
+        Navigator.pop(context);
+        Navigator.push(
+          context,
+          FadeRoute(page: const FoodListScreen()), // Используем FadeRoute здесь
+        );
+        //Navigator.pushNamedAndRemoveUntil(context, '/', (route) => true);
         break;
       case 2:
-        Navigator.pushNamedAndRemoveUntil(context, '/start', (route) => true);
+        //Navigator.pop(context);
+        Navigator.push(
+          context,
+          FadeRoute(page: const FavoriteFoodeListScreen()), // Используем FadeRoute здесь
+        );
+        //Navigator.pushNamedAndRemoveUntil(context, '/favorites', (route) => true);
         break;
       case 3:
-        Navigator.pushNamedAndRemoveUntil(context, '/auth', (route) => true);
+        //Navigator.pop(context);
+        Navigator.push(
+          context,
+          FadeRoute(page: const LoginRegister()), // Используем FadeRoute здесь
+        );
+        //Navigator.pushNamedAndRemoveUntil(context, '/auth', (route) => true);
         break;
       default:
-        Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+        Navigator.pop(context);
+        Navigator.push(
+          context,
+          FadeRoute(page: const FoodListScreen()), // Используем FadeRoute здесь
+        );
+        //Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
         break;
     }
   }
