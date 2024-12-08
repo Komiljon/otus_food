@@ -19,7 +19,7 @@ class _FavoriteFoodeListScreenState extends State<FavoriteFoodeListScreen> {
   bool favorite = false;
 
   checkFavoriteProduct(int id) {
-    List<DbModel> listFavProduct = <DbModel>[];
+    List<DbFavoriteModel> listFavProduct = <DbFavoriteModel>[];
 
     listFavProduct = HiveService.getAllFavProducts();
     if (listFavProduct.isNotEmpty) {

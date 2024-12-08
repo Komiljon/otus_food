@@ -1,35 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'db_model.dart';
+part of 'db_reciep_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class DbFavoriteModelAdapter extends TypeAdapter<DbFavoriteModel> {
+class DbRecieptModelAdapter extends TypeAdapter<DbRecieptModel> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
-  DbFavoriteModel read(BinaryReader reader) {
+  DbRecieptModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return DbFavoriteModel(
+    return DbRecieptModel(
       id: fields[0] as int,
-      quantity: fields[1] as int,
+      data: fields[1] as String,
     );
   }
 
   @override
-  void write(BinaryWriter writer, DbFavoriteModel obj) {
+  void write(BinaryWriter writer, DbRecieptModel obj) {
     writer
       ..writeByte(2)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.quantity);
+      ..write(obj.data);
   }
 
   @override
@@ -38,7 +38,7 @@ class DbFavoriteModelAdapter extends TypeAdapter<DbFavoriteModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is DbFavoriteModelAdapter &&
+      other is DbRecieptModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

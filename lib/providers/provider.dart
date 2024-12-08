@@ -7,7 +7,7 @@ class FavProdProvider extends ChangeNotifier {
   // Favorite products
   int favProdCount = 0;
   Map<int, int> favProdElems = {};
-  List<DbModel> listFavProduct = <DbModel>[];
+  List<DbFavoriteModel> listFavProduct = <DbFavoriteModel>[];
 
   void getFavoriteProdcount() {
     listFavProduct = HiveService.getAllFavProducts();
@@ -24,7 +24,7 @@ class FavProdProvider extends ChangeNotifier {
 
   void addToFavoriteProd(int id, [int q = 1]) {
     if (q > 0) {
-      HiveService.addFavProduct(DbModel(id: id, quantity: q));
+      HiveService.addFavProduct(DbFavoriteModel(id: id, quantity: q));
     }
     getFavoriteProdcount();
   }

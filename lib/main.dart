@@ -10,11 +10,10 @@ import 'pages/food_list.dart';
 import 'pages/start.dart';
 import 'providers/provider.dart';
 
-
-
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveService.initHive(); // Инициализация БД
+  await HiveReciepService.initHive();
   runApp(MultiBlocProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => FavProdProvider()..getFavoriteProdcount()), // Избранные рецепты
@@ -24,7 +23,7 @@ main() async {
 }
 
 class MyApp extends StatelessWidget {
-   const MyApp({super.key});
+  const MyApp({super.key});
   /*
    final GoRouter _router = GoRouter(
     routes: <RouteBase>[
@@ -76,7 +75,6 @@ class MyApp extends StatelessWidget {
     ],
   );
   */
-    
 
   // This widget is the root of your application.
   @override
@@ -97,7 +95,6 @@ class MyApp extends StatelessWidget {
           '/favorites': (context) => const FavoriteFoodeListScreen(),
           '/auth': (context) => const LoginRegister(),
           '/addnewrecept': (context) => const AddNewRecept(),
-        }
-    );
+        });
   }
 }

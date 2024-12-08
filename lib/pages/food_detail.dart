@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../db/db_model.dart';
 import '../db/hive_service.dart';
 import '../model/food_detail.dart';
-import '../model/ingridients.dart';
+import '../model/new_ingridients.dart';
 import '../model/recept_steps.dart';
 import '../providers/provider.dart';
 import '../widgets/bottom_navbar.dart';
@@ -30,7 +30,7 @@ class _FoodDetailState extends State<FoodDetail> {
   final CustomPainter painter = SimplePainter();
 
   checkFavoriteProduct(int id) {
-    List<DbModel> listFavProduct = <DbModel>[];
+    List<DbFavoriteModel> listFavProduct = <DbFavoriteModel>[];
     listFavProduct = HiveService.getAllFavProducts();
     if (listFavProduct.isNotEmpty) {
       for (var element in listFavProduct) {
@@ -48,7 +48,7 @@ class _FoodDetailState extends State<FoodDetail> {
     actives = false;
     id = widget.id;
     foodDetailData = getFoodData(id);
-    ingridientsData = getIngridientList(id);
+    ingridientsData = getIngridientList();
     receptStepsData = getReceptSteps(id);
     favorite = checkFavoriteProduct(id);
   }
@@ -266,8 +266,8 @@ class _FoodDetailState extends State<FoodDetail> {
                                   height: 8,
                                 ),
                                 itemBuilder: (context, index) => IngredietRow(
-                                  name: snapshot.data!.ingredients?[index].name,
-                                  wedghts: snapshot.data!.ingredients?[index].count,
+                                  name: snapshot.data!.ingredients?[index].id.toString(),
+                                  wedghts: snapshot.data!.ingredients?[index].count.toString(),
                                 ),
                                 scrollDirection: Axis.vertical,
                                 physics: const NeverScrollableScrollPhysics(),

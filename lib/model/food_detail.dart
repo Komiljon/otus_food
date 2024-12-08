@@ -27,9 +27,8 @@ class FoodDetailModel {
 }
 
 Future<FoodDetailModel> getFoodData(int elementId) async {
-
   var url = 'https://foodapi.dzolotov.tech/recipe/$elementId';
-  
+
   final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 30));
   if (response.statusCode == 200) {
     return FoodDetailModel.fromJson(json.decode(response.body));

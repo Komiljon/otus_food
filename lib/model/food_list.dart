@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../db/db_reciep_model.dart';
+import '../db/hive_service.dart';
+
 class FoodsList {
   List<Foods> foods;
   FoodsList({required this.foods});
@@ -47,11 +50,16 @@ Future<FoodsList> getFoodsList() async {
   final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 30));
   if (response.statusCode == 200) {
     var res = '{"foods": ${response.body}}';
+    HiveReciepService.addRecieptData(DbRecieptModel(id: 0, data: res));
     return FoodsList.fromJson(json.decode(res));
   }
   if (response.statusCode == 400) {
     throw Exception('Нет доступных рецептов в этом разделе.');
   } else {
+    var dbRes = HiveReciepService.getRecietData();
+    if (dbRes.isNotEmpty) {
+      return FoodsList.fromJson(json.decode(dbRes[0].data.toString()));
+    }
     throw Exception('Нет соеденения с сервером: ${response.reasonPhrase}');
   }
 
