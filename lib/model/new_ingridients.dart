@@ -73,8 +73,9 @@ Future<IngredientModel> getIngridientList() async {
   var url = 'https://foodapi.dzolotov.tech/recipe_ingredient';
 
   final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 30));
-  if (response.statusCode == 200) {
-    return IngredientModel.fromJson(json.decode(response.body));
+  if (response.statusCode == 200) {  
+    var res = '{"ingredients": ${response.body}}';
+    return IngredientModel.fromJson(json.decode(res));
   }
   if (response.statusCode == 400) {
     throw Exception('Нет доступных рецептов в этом разделе.');

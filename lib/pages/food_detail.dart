@@ -51,6 +51,16 @@ class _FoodDetailState extends State<FoodDetail> {
     ingridientsData = getIngridientList();
     receptStepsData = getReceptSteps(id);
     favorite = checkFavoriteProduct(id);
+
+
+    ingridientsData.then((items) async {
+      if(items.ingredients!.isNotEmpty){
+        for (var i = 0; i < items.ingredients!.length; i++) {
+          print(items.ingredients?[i].ingredient?.id.toString());
+        }      
+      }
+      
+    });
   }
 
   @override
@@ -262,13 +272,18 @@ class _FoodDetailState extends State<FoodDetail> {
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               return ListView.separated(
-                                separatorBuilder: (context, index) => const SizedBox(
-                                  height: 8,
+                                separatorBuilder: (context, index) => SizedBox(
+                                  height: (widget.id == snapshot.data!.ingredients?[index].recipe?.id)?8:0,
                                 ),
-                                itemBuilder: (context, index) => IngredietRow(
-                                  name: snapshot.data!.ingredients?[index].id.toString(),
-                                  wedghts: snapshot.data!.ingredients?[index].count.toString(),
-                                ),
+                                itemBuilder: (context, index){ 
+                                  if(widget.id == snapshot.data!.ingredients?[index].recipe?.id){
+                                    return IngredietRow(
+                                      name: snapshot.data!.ingredients?[index].id.toString(),
+                                      wedghts: snapshot.data!.ingredients?[index].count.toString(),
+                                    );                                
+                                  }
+                                  return const SizedBox(height: 0,);
+                                },
                                 scrollDirection: Axis.vertical,
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
