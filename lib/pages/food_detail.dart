@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../db/db_model.dart';
 import '../db/hive_service.dart';
 import '../model/food_detail.dart';
-import '../model/new_ingridients.dart';
+import '../model/ingridients.dart';
 import '../model/recept_steps.dart';
 import '../providers/provider.dart';
 import '../widgets/bottom_navbar.dart';
@@ -51,16 +51,6 @@ class _FoodDetailState extends State<FoodDetail> {
     ingridientsData = getIngridientList();
     receptStepsData = getReceptSteps(id);
     favorite = checkFavoriteProduct(id);
-
-
-    ingridientsData.then((items) async {
-      if(items.ingredients!.isNotEmpty){
-        for (var i = 0; i < items.ingredients!.length; i++) {
-          print(items.ingredients?[i].ingredient?.id.toString());
-        }      
-      }
-      
-    });
   }
 
   @override
@@ -273,12 +263,13 @@ class _FoodDetailState extends State<FoodDetail> {
                             if (snapshot.hasData) {
                               return ListView.separated(
                                 separatorBuilder: (context, index) => SizedBox(
-                                  height: (widget.id == snapshot.data!.ingredients?[index].recipe?.id)?8:0,
+                                  height: (widget.id == snapshot.data!.ingredients?[index].recipe?.id 
+                                  && snapshot.data!.ingredients![index].count! > 0)?8:0,
                                 ),
                                 itemBuilder: (context, index){ 
-                                  if(widget.id == snapshot.data!.ingredients?[index].recipe?.id){
+                                  if(widget.id == snapshot.data!.ingredients?[index].recipe?.id && snapshot.data!.ingredients![index].count! > 0){
                                     return IngredietRow(
-                                      name: snapshot.data!.ingredients?[index].id.toString(),
+                                      id: snapshot.data!.ingredients![index].ingredient?.id,
                                       wedghts: snapshot.data!.ingredients?[index].count.toString(),
                                     );                                
                                   }
