@@ -1,8 +1,15 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_network_connectivity/flutter_network_connectivity.dart';
 
 import '../db/db_reciep_model.dart';
 import '../db/hive_service.dart';
+
+FlutterNetworkConnectivity flutterNetworkConnectivity = FlutterNetworkConnectivity(
+  isContinousLookUp: true, // optional, false if you cont want continous lookup
+  lookUpDuration: const Duration(seconds: 5), // optional, to override default lookup duration
+  lookUpUrl: 'google.com', // optional, to override default lookup url
+);
 
 class IngredientModel {
   List<Ingredients>? ingredients;
@@ -75,8 +82,16 @@ class Ingredient {
 Future<IngredientModel> getIngridientList() async {
   var url = 'https://foodapi.dzolotov.tech/recipe_ingredient';
 
+  bool isNetworkConnectedOnCall = await flutterNetworkConnectivity.isInternetConnectionAvailable();
+  if (!isNetworkConnectedOnCall) {
+    var dbRes = HiveReciepService.getRecietData();
+    if (dbRes.isNotEmpty) {
+      return IngredientModel.fromJson(json.decode(dbRes[1].data.toString()));
+    }
+  }
+
   final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 30));
-  if (response.statusCode == 200) {  
+  if (response.statusCode == 200) {
     var res = '{"ingredients": ${response.body}}';
     HiveReciepService.addRecieptData(DbRecieptModel(id: 1, data: res));
     return IngredientModel.fromJson(json.decode(res));
@@ -86,7 +101,7 @@ Future<IngredientModel> getIngridientList() async {
   } else {
     var dbRes = HiveReciepService.getRecietData();
     if (dbRes.isNotEmpty) {
-      return IngredientModel.fromJson(json.decode(dbRes[0].data.toString()));
+      return IngredientModel.fromJson(json.decode(dbRes[1].data.toString()));
     }
     throw Exception('Нет соеденения с сервером: ${response.reasonPhrase}');
   }
