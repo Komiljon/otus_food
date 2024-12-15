@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../generated/l10n.dart';
 import '../model/faderouter.dart';
 import '../pages/auth.dart';
 import '../pages/favorites_list.dart';
@@ -91,7 +92,7 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
                 ),
               ),
             ),
-            label: 'Рецепты',
+            label: S.of(context).recipe,
           ),
           BottomNavigationBarItem(
             icon: Container(
@@ -101,7 +102,7 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
                 size: 24,
               ),
             ),
-            label: 'Холодильниик',
+            label: S.of(context).holodilnik,
           ),
           BottomNavigationBarItem(
             icon: Container(
@@ -111,7 +112,7 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
                 size: 24,
               ),
             ),
-            label: 'Избранное',
+            label: S.of(context).favorite,
           ),
           BottomNavigationBarItem(
             icon: Container(
@@ -121,7 +122,7 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
                 size: 24,
               ),
             ),
-            label: 'Вход',
+            label: S.of(context).login,
           ),
         ]);
   }

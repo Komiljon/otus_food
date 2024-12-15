@@ -3,15 +3,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import '../db/database.dart';
+import '../generated/l10n.dart';
 import '../model/comments_db_model.dart';
 import 'package:file_picker/file_picker.dart';
-
-
 
 class CommentWidget extends StatefulWidget {
   final int id;
   const CommentWidget({
-    super.key, required this.id,
+    super.key,
+    required this.id,
   });
 
   @override
@@ -47,7 +47,7 @@ class _CommentWidgetState extends State<CommentWidget> {
       // Пользователь отменил выбор файла
       return null;
     }
-  }   
+  }
 
   Future<void> selectFile() async {
     PlatformFile? file = await pickFile();
@@ -165,7 +165,7 @@ class _CommentWidgetState extends State<CommentWidget> {
                 maxLines: 1,
                 onFieldSubmitted: (value) {
                   if (value.trim() != "") {
-                    DBProvider.db.insertCommentdb(Comment(null, widget.id, value, imgsrc:selectedFile?.path ?? ''));
+                    DBProvider.db.insertCommentdb(Comment(null, widget.id, value, imgsrc: selectedFile?.path ?? ''));
                     setState(() {
                       updateCommentList();
                       selectedFile = null;
@@ -175,12 +175,12 @@ class _CommentWidgetState extends State<CommentWidget> {
                 },
               ),
             ),
-            const Positioned(
+            Positioned(
               top: 12,
               left: 10,
               child: Text(
-                'оставить комментарий',
-                style: TextStyle(fontSize: 14),
+                S.of(context).addcomment,
+                style: const TextStyle(fontSize: 14),
               ),
             ),
             Positioned(
@@ -189,7 +189,9 @@ class _CommentWidgetState extends State<CommentWidget> {
               child: IconButton(
                 padding: const EdgeInsets.only(left: 5.0, top: 0.0, right: 7.0, bottom: 0.0),
                 constraints: const BoxConstraints(),
-                onPressed: () {selectFile();},
+                onPressed: () {
+                  selectFile();
+                },
                 icon: const Icon(
                   Icons.photo,
                   color: Color.fromRGBO(22, 89, 50, 1),
@@ -213,73 +215,75 @@ class _CommentWidgetState extends State<CommentWidget> {
         children: content
             .map((comm) => Padding(
                   padding: const EdgeInsets.only(top: 32),
-                  child: (comm.cid == cid)? Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: 83,
-                        height: 73,
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(32.0),
-                          child: Image.asset(
-                            'assets/images/comment_avatar.png',
-                            width: 63,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              const Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    'anna_obraztsova',
-                                    style: TextStyle(fontSize: 16, color: Color.fromRGBO(46, 204, 113, 1)),
-                                  ),
-                                  Text(
-                                    '25.05.2022',
-                                    style: TextStyle(fontSize: 14, color: Color.fromRGBO(194, 194, 194, 1)),
-                                  ),
-                                ],
+                  child: (comm.cid == cid)
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 83,
+                              height: 73,
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(32.0),
+                                child: Image.asset(
+                                  'assets/images/comment_avatar.png',
+                                  width: 63,
+                                ),
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      comm.comment,
-                                      style: const TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 1)),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    const Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          'anna_obraztsova',
+                                          style: TextStyle(fontSize: 16, color: Color.fromRGBO(46, 204, 113, 1)),
+                                        ),
+                                        Text(
+                                          '25.05.2022',
+                                          style: TextStyle(fontSize: 14, color: Color.fromRGBO(194, 194, 194, 1)),
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            comm.comment,
+                                            style: const TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 1)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    (comm.imgsrc.isNotEmpty)
+                                        ? Image.file(File(comm.imgsrc))
+                                        : Image.asset(
+                                            'assets/images/comment_img.png',
+                                          ),
+                                  ],
+                                ),
                               ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              (comm.imgsrc.isNotEmpty)?
-                              Image.file(File(comm.imgsrc))
-                              :Image.asset(
-                                'assets/images/comment_img.png',
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ):Container(),
+                            ),
+                          ],
+                        )
+                      : Container(),
                 ))
             .toList(),
       ),

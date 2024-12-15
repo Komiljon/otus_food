@@ -48,3 +48,11 @@ class FavProdProvider extends ChangeNotifier {
     getFavoriteProdcount();
   }
 }
+
+class LocalesProvider extends ChangeNotifier {
+  String lc = 'ru';
+  void getLocalState() {
+    lc = 'en';
+    notifyListeners();
+  }
+}
