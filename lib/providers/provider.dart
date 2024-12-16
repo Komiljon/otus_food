@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../db/db_model.dart';
 import '../db/hive_service.dart';
@@ -51,8 +52,21 @@ class FavProdProvider extends ChangeNotifier {
 
 class LocalesProvider extends ChangeNotifier {
   String lc = 'ru';
-  void getLocalState() {
-    lc = 'en';
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  Future<void> getLocalState() async {
+    final SharedPreferences prefs = await _prefs;
+    lc = (prefs.getString('lang') ?? 'ru');
     notifyListeners();
+  }
+
+  Future<void> setLocaleState() async {
+    final SharedPreferences prefs = await _prefs;
+    lc = (prefs.getString('lang') ?? 'ru');
+    if (lc == 'ru') {
+      prefs.setString('lang', 'en');
+    } else {
+      prefs.setString('lang', 'ru');
+    }
+    getLocalState();
   }
 }

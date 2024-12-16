@@ -1,12 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../generated/l10n.dart';
 import '../model/faderouter.dart';
 import '../pages/auth.dart';
 import '../pages/favorites_list.dart';
 import '../pages/food_list.dart';
+import '../providers/provider.dart';
 
 class AkaBottomNavigationBar extends StatefulWidget {
   final int curIndexs;
@@ -57,6 +59,9 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
           FadeRoute(page: const LoginRegister()), // Используем FadeRoute здесь
         );
         //Navigator.pushNamedAndRemoveUntil(context, '/auth', (route) => true);
+        break;
+      case 4:
+        context.read<LocalesProvider>().setLocaleState();
         break;
       default:
         Navigator.pop(context);
@@ -123,6 +128,16 @@ class _AkaBottomNavigationBarState extends State<AkaBottomNavigationBar> {
               ),
             ),
             label: S.of(context).login,
+          ),
+          BottomNavigationBarItem(
+            icon: Container(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: const Icon(
+                Icons.language,
+                size: 24,
+              ),
+            ),
+            label: context.watch<LocalesProvider>().lc,
           ),
         ]);
   }
