@@ -22,10 +22,36 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add": MessageLookupByLibrary.simpleMessage("Add"),
         "addcomment": MessageLookupByLibrary.simpleMessage("leave a comment"),
+        "addingredient": MessageLookupByLibrary.simpleMessage("Add ingredient"),
+        "addphotor": MessageLookupByLibrary.simpleMessage("Add recipe photo"),
+        "addreciepttitle": MessageLookupByLibrary.simpleMessage("New recipe"),
+        "addstep": MessageLookupByLibrary.simpleMessage("Add a step"),
+        "cookingsteps": MessageLookupByLibrary.simpleMessage("Cooking steps"),
+        "endcooking": MessageLookupByLibrary.simpleMessage("Finish cooking"),
         "favorite": MessageLookupByLibrary.simpleMessage("Favorite"),
+        "fillfeald": MessageLookupByLibrary.simpleMessage("Fill in this field"),
         "holodilnik": MessageLookupByLibrary.simpleMessage("Refrigerator"),
+        "ingredient": MessageLookupByLibrary.simpleMessage("Ingredient"),
+        "ingredientname":
+            MessageLookupByLibrary.simpleMessage("Ingredient name"),
+        "ingredients": MessageLookupByLibrary.simpleMessage("Ingredients"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
-        "recipe": MessageLookupByLibrary.simpleMessage("Recipe")
+        "minutes": MessageLookupByLibrary.simpleMessage("Minutes"),
+        "nocookingsteps":
+            MessageLookupByLibrary.simpleMessage("no cooking steps"),
+        "nodata": MessageLookupByLibrary.simpleMessage("No data"),
+        "noingredients": MessageLookupByLibrary.simpleMessage("no ingredients"),
+        "quantity": MessageLookupByLibrary.simpleMessage("Quantity"),
+        "recipe": MessageLookupByLibrary.simpleMessage("Recipe"),
+        "recipename": MessageLookupByLibrary.simpleMessage("Recipe name"),
+        "recipestep": MessageLookupByLibrary.simpleMessage("Recipe step"),
+        "saverecipe": MessageLookupByLibrary.simpleMessage("Save recipe"),
+        "secunds": MessageLookupByLibrary.simpleMessage("Seconds"),
+        "startcooking": MessageLookupByLibrary.simpleMessage("Start cooking"),
+        "stepdesc": MessageLookupByLibrary.simpleMessage("Step Description"),
+        "stepduration": MessageLookupByLibrary.simpleMessage("Step duration"),
+        "timer": MessageLookupByLibrary.simpleMessage("Timer")
       };
 }

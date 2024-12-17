@@ -99,6 +99,246 @@ class S {
       args: [],
     );
   }
+
+  /// `New recipe`
+  String get addreciepttitle {
+    return Intl.message(
+      'New recipe',
+      name: 'addreciepttitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recipe name`
+  String get recipename {
+    return Intl.message(
+      'Recipe name',
+      name: 'recipename',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fill in this field`
+  String get fillfeald {
+    return Intl.message(
+      'Fill in this field',
+      name: 'fillfeald',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add recipe photo`
+  String get addphotor {
+    return Intl.message(
+      'Add recipe photo',
+      name: 'addphotor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ingredients`
+  String get ingredients {
+    return Intl.message(
+      'Ingredients',
+      name: 'ingredients',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add ingredient`
+  String get addingredient {
+    return Intl.message(
+      'Add ingredient',
+      name: 'addingredient',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cooking steps`
+  String get cookingsteps {
+    return Intl.message(
+      'Cooking steps',
+      name: 'cookingsteps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add a step`
+  String get addstep {
+    return Intl.message(
+      'Add a step',
+      name: 'addstep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save recipe`
+  String get saverecipe {
+    return Intl.message(
+      'Save recipe',
+      name: 'saverecipe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Timer`
+  String get timer {
+    return Intl.message(
+      'Timer',
+      name: 'timer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finish cooking`
+  String get endcooking {
+    return Intl.message(
+      'Finish cooking',
+      name: 'endcooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start cooking`
+  String get startcooking {
+    return Intl.message(
+      'Start cooking',
+      name: 'startcooking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ingredient`
+  String get ingredient {
+    return Intl.message(
+      'Ingredient',
+      name: 'ingredient',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ingredient name`
+  String get ingredientname {
+    return Intl.message(
+      'Ingredient name',
+      name: 'ingredientname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantity`
+  String get quantity {
+    return Intl.message(
+      'Quantity',
+      name: 'quantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get add {
+    return Intl.message(
+      'Add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recipe step`
+  String get recipestep {
+    return Intl.message(
+      'Recipe step',
+      name: 'recipestep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step Description`
+  String get stepdesc {
+    return Intl.message(
+      'Step Description',
+      name: 'stepdesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step duration`
+  String get stepduration {
+    return Intl.message(
+      'Step duration',
+      name: 'stepduration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minutes`
+  String get minutes {
+    return Intl.message(
+      'Minutes',
+      name: 'minutes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seconds`
+  String get secunds {
+    return Intl.message(
+      'Seconds',
+      name: 'secunds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `no ingredients`
+  String get noingredients {
+    return Intl.message(
+      'no ingredients',
+      name: 'noingredients',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `no cooking steps`
+  String get nocookingsteps {
+    return Intl.message(
+      'no cooking steps',
+      name: 'nocookingsteps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No data`
+  String get nodata {
+    return Intl.message(
+      'No data',
+      name: 'nodata',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

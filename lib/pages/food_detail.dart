@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../db/db_model.dart';
 import '../db/hive_service.dart';
+import '../generated/l10n.dart';
 import '../model/food_detail.dart';
 import '../model/ingridients.dart';
 import '../model/recept_steps.dart';
@@ -58,7 +59,7 @@ class _FoodDetailState extends State<FoodDetail> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Рецепт', style: TextStyle(fontSize: 20, color: Color.fromRGBO(22, 89, 50, 1))),
+        title: Text(S.of(context).recipe, style: const TextStyle(fontSize: 20, color: Color.fromRGBO(22, 89, 50, 1))),
         centerTitle: true,
         backgroundColor: actives ? const Color.fromRGBO(46, 204, 113, 1) : Colors.white,
         elevation: 0.0,
@@ -75,22 +76,22 @@ class _FoodDetailState extends State<FoodDetail> {
           child: actives
               ? SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 15),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Таймер',
-                          style: TextStyle(
+                          S.of(context).timer,
+                          style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
                           ),
                         ),
-                        Text(
+                        const Text(
                           '38:59',
                           style: TextStyle(
                             fontSize: 24,
@@ -234,16 +235,16 @@ class _FoodDetailState extends State<FoodDetail> {
                               },
                             );
                           } else if (snapshot.hasError) {
-                            return const Text('Нет данных');
+                            return Text(S.of(context).nodata);
                           }
                           return const Center(child: CircularProgressIndicator());
                         }),
                     const SizedBox(
                       height: 16,
                     ),
-                    const Text(
-                      'Ингредиенты',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
+                    Text(
+                      S.of(context).ingredients,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -291,9 +292,9 @@ class _FoodDetailState extends State<FoodDetail> {
                     const SizedBox(
                       height: 16,
                     ),
-                    const Text(
-                      'Шаги приготовления',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
+                    Text(
+                      S.of(context).cookingsteps,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -352,10 +353,10 @@ class _FoodDetailState extends State<FoodDetail> {
                                   ),
                                   side: const BorderSide(width: 1.0, color: Color.fromRGBO(22, 89, 50, 1)),
                                 ),
-                                child: const Text(
-                                  "Закончить готовить",
+                                child: Text(
+                                  S.of(context).endcooking,
                                   style:
-                                      TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
+                                      const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
                                 ),
                               )
                             : ElevatedButton(
@@ -369,9 +370,9 @@ class _FoodDetailState extends State<FoodDetail> {
                                     actives = true;
                                   });
                                 },
-                                child: const Text(
-                                  'Начать готовить',
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
+                                child: Text(
+                                  S.of(context).startcooking,
+                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
                                 ),
                               ),
                       ],

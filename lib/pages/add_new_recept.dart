@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../generated/l10n.dart';
 import '../widgets/bottom_navbar.dart';
 
 class AddNewRecept extends StatefulWidget {
@@ -57,7 +58,7 @@ class _AddNewReceptState extends State<AddNewRecept> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Новый рецепт'),
+        title: Text(S.of(context).addreciepttitle),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -68,12 +69,12 @@ class _AddNewReceptState extends State<AddNewRecept> {
               child: Column(
                 children: [
                   TextFormField(
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: '',
-                      labelText: 'Название рецепта',
+                      labelText: S.of(context).recipename,
                       filled: true,
-                      fillColor: Color.fromRGBO(236, 236, 236, 1),
-                      contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                      fillColor: const Color.fromRGBO(236, 236, 236, 1),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                       isDense: true,
                     ),
                     controller: textControllerReceptName,
@@ -92,7 +93,7 @@ class _AddNewReceptState extends State<AddNewRecept> {
                         }
                       });
                     },
-                    validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
+                    validator: (value) => value!.isEmpty ? S.of(context).fillfeald : null,
                   ),
                   const SizedBox(height: 16),
                   Container(
@@ -105,13 +106,13 @@ class _AddNewReceptState extends State<AddNewRecept> {
                       ),
                       borderRadius: BorderRadius.circular(3),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               child: Image(
                                 image: AssetImage('assets/icons/photo.png'),
                                 width: 48,
@@ -119,24 +120,24 @@ class _AddNewReceptState extends State<AddNewRecept> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             Text(
-                              "Добавить фото рецепта",
-                              style: TextStyle(fontSize: 14, color: Color.fromRGBO(22, 89, 50, 1)),
+                              S.of(context).addphotor,
+                              style: const TextStyle(fontSize: 14, color: Color.fromRGBO(22, 89, 50, 1)),
                             ),
                           ]),
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Text(
-                          'Ингредиенты',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
+                          S.of(context).ingredients,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -145,9 +146,9 @@ class _AddNewReceptState extends State<AddNewRecept> {
                   ),
                   const SizedBox(height: 20),
                   (ingredientMap.isEmpty)
-                      ? const Text(
-                          'нет ингредиентов',
-                          style: TextStyle(fontSize: 12, color: Color.fromRGBO(0, 0, 0, 1)),
+                      ? Text(
+                          S.of(context).noingredients,
+                          style: const TextStyle(fontSize: 12, color: Color.fromRGBO(0, 0, 0, 1)),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         )
@@ -253,22 +254,22 @@ class _AddNewReceptState extends State<AddNewRecept> {
                         ),
                         side: const BorderSide(width: 1.0, color: Color.fromRGBO(22, 89, 50, 1)),
                       ),
-                      child: const Text(
-                        "Добавить ингредиент",
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color.fromRGBO(22, 89, 50, 1)),
+                      child: Text(
+                        S.of(context).addingredient,
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color.fromRGBO(22, 89, 50, 1)),
                       ),
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Text(
-                          'Шаги приготовления',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
+                          S.of(context).cookingsteps,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Color.fromRGBO(22, 89, 50, 1)),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -277,9 +278,9 @@ class _AddNewReceptState extends State<AddNewRecept> {
                   ),
                   const SizedBox(height: 20),
                   (receptStepsMap.isEmpty)
-                      ? const Text(
-                          'нет шагов приготовления',
-                          style: TextStyle(fontSize: 12, color: Color.fromRGBO(0, 0, 0, 1)),
+                      ? Text(
+                          S.of(context).nocookingsteps,
+                          style: const TextStyle(fontSize: 12, color: Color.fromRGBO(0, 0, 0, 1)),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         )
@@ -413,9 +414,9 @@ class _AddNewReceptState extends State<AddNewRecept> {
                         ),
                         side: const BorderSide(width: 1.0, color: Color.fromRGBO(22, 89, 50, 1)),
                       ),
-                      child: const Text(
-                        "Добавить шаг",
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color.fromRGBO(22, 89, 50, 1)),
+                      child: Text(
+                        S.of(context).addstep,
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Color.fromRGBO(22, 89, 50, 1)),
                       ),
                     ),
                   ),
@@ -442,9 +443,9 @@ class _AddNewReceptState extends State<AddNewRecept> {
                           ),
                           backgroundColor:
                               btnActive ? const Color.fromRGBO(46, 204, 113, 1) : const Color.fromRGBO(121, 118, 118, 1)),
-                      child: const Text(
-                        'Сохранить рецепт',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
+                      child: Text(
+                        S.of(context).saverecipe,
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
                       ),
                     ),
                   ),
@@ -472,7 +473,7 @@ Future<void> _dialogIngredientBuilder(BuildContext context, Function setIng) {
           var textControllerIngrName = TextEditingController();
           var textControllerIngrCount = TextEditingController();
           return AlertDialog(
-            title: const Text('Ингредиент'),
+            title: Text(S.of(context).ingredient),
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0.0))),
             contentPadding: const EdgeInsets.all(0.0),
             backgroundColor: Colors.white,
@@ -482,37 +483,37 @@ Future<void> _dialogIngredientBuilder(BuildContext context, Function setIng) {
                 child: Column(
                   children: [
                     TextFormField(
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: '',
-                        labelText: 'Название ингредиента',
+                        labelText: S.of(context).ingredientname,
                         filled: true,
-                        fillColor: Color.fromRGBO(236, 236, 236, 1),
-                        contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                        fillColor: const Color.fromRGBO(236, 236, 236, 1),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                         isDense: true,
                       ),
                       controller: textControllerIngrName,
                       onSaved: (value) {
                         textControllerIngrName.text = '';
                       },
-                      validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
+                      validator: (value) => value!.isEmpty ? S.of(context).fillfeald : null,
                     ),
                     const SizedBox(
                       height: 16,
                     ),
                     TextFormField(
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: '',
-                        labelText: 'Количество',
+                        labelText: S.of(context).quantity,
                         filled: true,
-                        fillColor: Color.fromRGBO(236, 236, 236, 1),
-                        contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                        fillColor: const Color.fromRGBO(236, 236, 236, 1),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                         isDense: true,
                       ),
                       controller: textControllerIngrCount,
                       onSaved: (value) {
                         textControllerIngrCount.text = '';
                       },
-                      validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
+                      validator: (value) => value!.isEmpty ? S.of(context).fillfeald : null,
                     ),
                     const SizedBox(height: 60),
                     Container(
@@ -532,9 +533,9 @@ Future<void> _dialogIngredientBuilder(BuildContext context, Function setIng) {
                               borderRadius: BorderRadius.circular(25.0),
                             ),
                             backgroundColor: const Color.fromRGBO(46, 204, 113, 1)),
-                        child: const Text(
-                          'Добавить',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
+                        child: Text(
+                          S.of(context).add,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
                         ),
                       ),
                     ),
@@ -562,7 +563,7 @@ Future<void> _dialogRecepStepBuilder(BuildContext context, Function setStep) {
           var textControllerStepSecund = TextEditingController();
 
           return AlertDialog(
-            title: const Text('Шаг рецепта'),
+            title: Text(S.of(context).recipestep),
             backgroundColor: Colors.white,
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0.0))),
             contentPadding: const EdgeInsets.all(0.0),
@@ -573,12 +574,12 @@ Future<void> _dialogRecepStepBuilder(BuildContext context, Function setStep) {
                 child: Column(
                   children: [
                     TextFormField(
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: '',
-                        labelText: 'Описание шага',
+                        labelText: S.of(context).stepdesc,
                         filled: true,
-                        fillColor: Color.fromRGBO(236, 236, 236, 1),
-                        contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                        fillColor: const Color.fromRGBO(236, 236, 236, 1),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                         isDense: true,
                       ),
                       maxLines: 10,
@@ -587,19 +588,19 @@ Future<void> _dialogRecepStepBuilder(BuildContext context, Function setStep) {
                       onSaved: (value) {
                         textControllerStepDesc.text = '';
                       },
-                      validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
+                      validator: (value) => value!.isEmpty ? S.of(context).fillfeald : null,
                     ),
                     const SizedBox(
                       height: 16,
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'Длительность шага',
-                          style: TextStyle(fontSize: 10, color: Color.fromRGBO(0, 0, 0, 1)),
+                          S.of(context).stepduration,
+                          style: const TextStyle(fontSize: 10, color: Color.fromRGBO(0, 0, 0, 1)),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -615,12 +616,12 @@ Future<void> _dialogRecepStepBuilder(BuildContext context, Function setStep) {
                       children: [
                         Expanded(
                           child: TextFormField(
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: '',
-                              labelText: 'Минуты',
+                              labelText: S.of(context).minutes,
                               filled: true,
-                              fillColor: Color.fromRGBO(236, 236, 236, 1),
-                              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                              fillColor: const Color.fromRGBO(236, 236, 236, 1),
+                              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                               isDense: true,
                             ),
                             maxLines: 1,
@@ -628,7 +629,7 @@ Future<void> _dialogRecepStepBuilder(BuildContext context, Function setStep) {
                             onSaved: (value) {
                               textControllerStepMinute.text = '';
                             },
-                            validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
+                            validator: (value) => value!.isEmpty ? S.of(context).fillfeald : null,
                           ),
                         ),
                         const SizedBox(
@@ -636,12 +637,12 @@ Future<void> _dialogRecepStepBuilder(BuildContext context, Function setStep) {
                         ),
                         Expanded(
                           child: TextFormField(
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: '',
-                              labelText: 'Секунды',
+                              labelText: S.of(context).secunds,
                               filled: true,
-                              fillColor: Color.fromRGBO(236, 236, 236, 1),
-                              contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+                              fillColor: const Color.fromRGBO(236, 236, 236, 1),
+                              contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
                               isDense: true,
                             ),
                             maxLines: 1,
@@ -649,7 +650,7 @@ Future<void> _dialogRecepStepBuilder(BuildContext context, Function setStep) {
                             onSaved: (value) {
                               textControllerStepSecund.text = '';
                             },
-                            validator: (value) => value!.isEmpty ? 'Заполнить это поле' : null,
+                            validator: (value) => value!.isEmpty ? S.of(context).fillfeald : null,
                           ),
                         ),
                       ],
@@ -672,9 +673,9 @@ Future<void> _dialogRecepStepBuilder(BuildContext context, Function setStep) {
                               borderRadius: BorderRadius.circular(25.0),
                             ),
                             backgroundColor: const Color.fromRGBO(46, 204, 113, 1)),
-                        child: const Text(
-                          'Добавить',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
+                        child: Text(
+                          S.of(context).add,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
                         ),
                       ),
                     ),
