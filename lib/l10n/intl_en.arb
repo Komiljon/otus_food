@@ -27,5 +27,12 @@
   "secunds": "Seconds",
   "noingredients": "no ingredients",
   "nocookingsteps": "no cooking steps",
-  "nodata": "No data"
+  "nodata": "No data",
+  "favorites": "Favorites",
+  "password": "password",
+  "passwordrep": "password again",
+  "regist": "Registration",
+  "enter": "Login",
+  "loginapp": "Login to the app",
+  "register": "Register"
 }

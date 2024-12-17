@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../generated/l10n.dart';
 import '../widgets/bottom_navbar.dart';
 
 class LoginRegister extends StatefulWidget {
@@ -74,7 +75,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                                   key: _inputKey1,
                                   decoration: InputDecoration(
                                     hintText: '',
-                                    labelText: 'логин',
+                                    labelText: S.of(context).login,
                                     labelStyle: const TextStyle(color: Color.fromRGBO(194, 194, 194, 1)),
                                     floatingLabelBehavior: FloatingLabelBehavior.never,
                                     prefixIcon: const Icon(
@@ -118,7 +119,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                                   key: _inputKey2,
                                   decoration: InputDecoration(
                                     hintText: '',
-                                    labelText: 'пароль',
+                                    labelText: S.of(context).password,
                                     labelStyle: const TextStyle(color: Color.fromRGBO(194, 194, 194, 1)),
                                     floatingLabelBehavior: FloatingLabelBehavior.never,
                                     prefixIcon: const Icon(
@@ -164,7 +165,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                                     key: _inputKey3,
                                     decoration: InputDecoration(
                                       hintText: '',
-                                      labelText: 'пароль еще раз',
+                                      labelText: S.of(context).passwordrep,
                                       labelStyle: const TextStyle(color: Color.fromRGBO(194, 194, 194, 1)),
                                       floatingLabelBehavior: FloatingLabelBehavior.never,
                                       prefixIcon: const Icon(
@@ -213,7 +214,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                                     ),
                                     onPressed: () {},
                                     child: Text(
-                                      (isRegister) ? 'Регистрация' : 'Войти',
+                                      (isRegister) ? S.of(context).regist : S.of(context).enter,
                                       style: const TextStyle(color: Colors.white, fontSize: 16),
                                     ),
                                   ),
@@ -225,7 +226,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                       ],
                     ),
                     SelectableText(
-                      (isRegister) ? 'Войти в приложение' : 'Зарегистрироваться',
+                      (isRegister) ? S.of(context).loginapp : S.of(context).register,
                       style: const TextStyle(fontSize: 14, color: Colors.white),
                       onTap: () {
                         setState(() {

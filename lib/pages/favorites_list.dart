@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../db/db_model.dart';
 import '../db/hive_service.dart';
+import '../generated/l10n.dart';
 import '../model/food_list.dart';
 import '../widgets/bottom_navbar.dart';
 import '../widgets/foodlist_cards.dart';
@@ -42,7 +43,7 @@ class _FavoriteFoodeListScreenState extends State<FavoriteFoodeListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Избранное'),
+        title: Text(S.of(context).favorites),
       ),
       body: Center(
           child: Padding(

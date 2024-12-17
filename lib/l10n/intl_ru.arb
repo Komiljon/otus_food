@@ -27,5 +27,12 @@
   "secunds": "Секунды",
   "noingredients": "нет ингредиентов",
   "nocookingsteps": "нет шагов приготовления",
-  "nodata": "Нет данных"
+  "nodata": "Нет данных",
+  "favorites": "Избранное",
+  "password": "пароль",
+  "passwordrep": "пароль еще раз",
+  "regist": "Регистрация",
+  "enter": "Войти",
+  "loginapp": "Войти в приложение",
+  "register": "Зарегистрироваться"
 }
