@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter_network_connectivity/flutter_network_connectivity.dart';
+//import 'package:flutter_network_connectivity/flutter_network_connectivity.dart';
 
 import '../db/db_reciep_model.dart';
 import '../db/hive_service.dart';
 
-FlutterNetworkConnectivity flutterNetworkConnectivity = FlutterNetworkConnectivity(
-  isContinousLookUp: true, // optional, false if you cont want continous lookup
-  lookUpDuration: const Duration(seconds: 5), // optional, to override default lookup duration
-  lookUpUrl: 'google.com', // optional, to override default lookup url
-);
+// FlutterNetworkConnectivity flutterNetworkConnectivity = FlutterNetworkConnectivity(
+//   isContinousLookUp: true, // optional, false if you cont want continous lookup
+//   lookUpDuration: const Duration(seconds: 5), // optional, to override default lookup duration
+//   lookUpUrl: 'google.com', // optional, to override default lookup url
+// );
 
 class FoodsList {
   List<Foods> foods;
@@ -54,13 +54,13 @@ class Foods {
 Future<FoodsList> getFoodsList() async {
   var url = 'https://foodapi.dzolotov.tech/recipe';
 
-  bool isNetworkConnectedOnCall = await flutterNetworkConnectivity.isInternetConnectionAvailable();
-  if (!isNetworkConnectedOnCall) {
-    var dbRes = HiveReciepService.getRecietData();
-    if (dbRes.isNotEmpty) {
-      return FoodsList.fromJson(json.decode(dbRes[0].data.toString()));
-    }
-  }
+  // bool isNetworkConnectedOnCall = await flutterNetworkConnectivity.isInternetConnectionAvailable();
+  // if (!isNetworkConnectedOnCall) {
+  //   var dbRes = HiveReciepService.getRecietData();
+  //   if (dbRes.isNotEmpty) {
+  //     return FoodsList.fromJson(json.decode(dbRes[0].data.toString()));
+  //   }
+  // }
 
   final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 30));
   if (response.statusCode == 200) {
